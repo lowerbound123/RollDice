@@ -6,11 +6,13 @@
 
 <body>
 	<link rel="stylesheet" type="text/css" href="css/inputfield.css">
+	<link rel="stylesheet" type="text/css" href="css/divfield.css">
 	<div id = "Header" style="text-align: center;">
 		<h1>RollDice</h1>
 	</div>
 	
 	<div id = "MainSection" style="float: left;">
+		<!-- 一些常用的骰子 -->
 		<button type="button" onclick="AnyDice('1d100')" style="margin-right: 20px">1d100</button>
 		<button type="button" onclick="AnyDice('1d20')" style="margin-right: 20px">1d20</button>
 		<button type="button" onclick="AnyDice('1d10')" style="margin-right: 20px">1d10</button>
@@ -18,16 +20,20 @@
 		<button type="button" onclick="AnyDice('1d6')" style="margin-right: 20px">1d6</button>
 		<button type="button" onclick="AnyDice('1d4')" style="margin-right: 20px">1d4</button>
 		<br/>
+		
+		<!-- 任意骰子 -->
 		任意骰子：<input id="numb" placeholder="example:2d3+1d4+3">
 		<button type="button" onclick="AnyDice(document.getElementById('numb').value)">提交</button>
 		<br/>
-		理智值：<input id = "san" placeholder="Sanity" value=""/>
-		<button type="button" onclick="SanCheck()">San Check</button>
-<!-- 		<br/> -->
-		成功：<input id = "sanlost_win" placeholder="SanLost-Win"/>
-<!-- 		<br/> -->
-		失败：<input id = "sanlost_lost" placeholder="SanLost-Lost"/>
+		
+		<!-- 调查员信息 -->
+		调查员姓名：<input id = "PLName" placeholder="" class="pl-name"/>
+		年龄：<input id = "PLAge" placeholder="" class="pl-age"/>
+		性别：<input id = "PLGender" placeholder="" class="pl-gender"/>
+		职业：<input id = "PLOccupation" placeholder="" class="pl-occupation"/>
 		<br/>
+		
+		<!-- 常变基本属性 -->
 		HP：<input id = "HP" placeholder="0" class="basic-characteristic"/>
 		<button type="button" onclick="add('HP')"> +1 </button>
 		<button type="button" onclick="dec('HP')" style="margin-right: 20px"> -1 </button>
@@ -36,11 +42,18 @@
 		<button type="button" onclick="dec('MP')" style="margin-right: 20px"> -1 </button>
 		幸运：<input id = "LUCK" placeholder="0" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('LUCK')" style="margin-right: 10px"> 检定 </button>
-		<button type="button" onclick="add('MP')"> +1 </button>
-		<button type="button" onclick="dec('MP')" style="margin-right: 20px"> -1 </button>
+		<button type="button" onclick="add('LUCK')"> +1 </button>
+		<button type="button" onclick="dec('LUCK')" style="margin-right: 20px"> -1 </button>
 <!-- 		LUCK：<input id = "LUCK" placeholder="0"/> -->
 <!-- 		<button type="button" onclick="add('LUCK')"> +1 </button> -->
 <!-- 		<button type="button" onclick="dec(‘LUCK’)" style="margin-right: 20px"> -1 </button> -->
+		<br/>
+				理智值：<input id = "san" placeholder="Sanity" value=""/>
+				<button type="button" onclick="SanCheck()">San Check</button>
+		<!-- 		<br/> -->
+				成功：<input id = "sanlost_win" placeholder="SanLost-Win"/>
+		<!-- 		<br/> -->
+				失败：<input id = "sanlost_lost" placeholder="SanLost-Lost"/>
 		<br/>
 		力量：<input id = "STR" placeholder="0" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('STR')" style="margin-right: 10px"> 检定 </button>
@@ -60,152 +73,261 @@
 		<button type="button" onclick="check('POW')" style="margin-right: 10px"> 检定 </button>
 		教育：<input id = "EDU" placeholder="0" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('EDU')" style="margin-right: 10px"> 检定 </button>
+		智力：<input id = "INT" placeholder="0" value="" class="basic-characteristic"/>
+		<button type="button" onclick="check('INT')" style="margin-right: 10px"> 检定 </button>
+		<br/>
+		伤害加值：<input id = "DB" placeholder="0" value="" style="width: 120px; margin-right: 10px;"/>
+		体格：<input id = "Build" placeholder="0" value="" style="width: 155px; margin-right: 10px;""/>
+		闪避：<input id = "Dodge" placeholder="DEX/2" value="" class="basic-characteristic"/>
+		<button type="button" onclick="check('Dodge')" style="margin-right: 10px"> 检定 </button>
 		<br>
 		<br>
 		<table>
 			<tbody>
 				<tr>
 					<td class="skill-name">会计</td>
-					<td><input id = "Accounting" placeholder="0" value="5" class="skills"/></td>
+					<td><input id = "Accounting" placeholder="5" value="5" class="skills"/></td>
 					<td><button type="button" onclick="check('Accounting')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">话术</td>
-					<td><input id = "FaskTalk" placeholder="0" value="5" class="skills"/></td>
+					<td><input id = "FaskTalk" placeholder="5" value="5" class="skills"/></td>
 					<td><button type="button" onclick="check('FaskTalk')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">法律</td>
-					<td><input id = "Law" placeholder="0" value="5" class="skills"/></td>
+					<td><input id = "Law" placeholder="5" value="5" class="skills"/></td>
 					<td><button type="button" onclick="check('Law')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">人类学</td>
-					<td><input id = "Anthropology" placeholder="0" value="1" class="skills"/></td>
+					<td><input id = "Anthropology" placeholder="1" value="1" class="skills"/></td>
 					<td><button type="button" onclick="check('Anthropology')" style="margin-right: 10px"> 检定 </button></td>
 				</tr>
 				<tr>
 					<td class="skill-name">图书馆</td>
-					<td><input id = "LibraryUse" placeholder="0" value="20" class="skills"/></td>
+					<td><input id = "LibraryUse" placeholder="20" value="20" class="skills"/></td>
 					<td><button type="button" onclick="check('LibraryUse')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">估价</td>
-					<td><input id = "Appraise" placeholder="0" value="5" class="skills"/></td>
+					<td><input id = "Appraise" placeholder="5" value="5" class="skills"/></td>
 					<td><button type="button" onclick="check('Appraise')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">聆听</td>
-					<td><input id = "Listen" placeholder="0" value="20" class="skills"/></td>
+					<td><input id = "Listen" placeholder="20" value="20" class="skills"/></td>
 					<td><button type="button" onclick="check('Listen')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">考古学</td>
-					<td><input id = "Archaeology" placeholder="0" value="1" class="skills"/></td>
+					<td><input id = "Archaeology" placeholder="1" value="1" class="skills"/></td>
 					<td><button type="button" onclick="check('Archaeology')" style="margin-right: 10px"> 检定 </button></td>
 				</tr>
 				<tr>
 					<td class="skill-name">锁匠</td>
-					<td><input id = "Locksmith" placeholder="0" value="1" class="skills"/></td>
+					<td><input id = "Locksmith" placeholder="1" value="1" class="skills"/></td>
 					<td><button type="button" onclick="check('Locksmith')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">妙手</td>
-					<td><input id = "SleightOfHand" placeholder="0" value="10" class="skills"/></td>
+					<td><input id = "SleightOfHand" placeholder="10" value="10" class="skills"/></td>
 					<td><button type="button" onclick="check('SleightOfHand')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">机械维修</td>
-					<td><input id = "MechanicalRepair" placeholder="0" value="10" class="skills"/></td>
+					<td><input id = "MechanicalRepair" placeholder="10" value="10" class="skills"/></td>
 					<td><button type="button" onclick="check('MechanicalRepair')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">侦查</td>
-					<td><input id = "SpotHidden" placeholder="0" value="25" class="skills"/></td>
+					<td><input id = "SpotHidden" placeholder="25" value="25" class="skills"/></td>
 					<td><button type="button" onclick="check('SpotHidden')" style="margin-right: 10px"> 检定 </button></td>
 				</tr>
 				<tr>
 					<td class="skill-name">医学</td>
-					<td><input id = "Medicine" placeholder="0" value="1" class="skills"/></td>
+					<td><input id = "Medicine" placeholder="1" value="1" class="skills"/></td>
 					<td><button type="button" onclick="check('Medicine')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">潜行</td>
-					<td><input id = "Stealth" placeholder="0" value="20" class="skills"/></td>
+					<td><input id = "Stealth" placeholder="20" value="20" class="skills"/></td>
 					<td><button type="button" onclick="check('Stealth')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">博物学</td>
-					<td><input id = "NaturalWorld" placeholder="0" value="10" class="skills"/></td>
+					<td><input id = "NaturalWorld" placeholder="10" value="10" class="skills"/></td>
 					<td><button type="button" onclick="check('NaturalWorld')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">取悦</td>
-					<td><input id = "Charm" placeholder="0" value="15" class="skills"/></td>
+					<td><input id = "Charm" placeholder="15" value="15" class="skills"/></td>
 					<td><button type="button" onclick="check('Charm')" style="margin-right: 10px"> 检定 </button></td>
 				</tr>
 				<tr>
 					<td class="skill-name">急救</td>
-					<td><input id = "FirstAid" placeholder="0" value="30" class="skills"/></td>
+					<td><input id = "FirstAid" placeholder="30" value="30" class="skills"/></td>
 					<td><button type="button" onclick="check('FirstAid')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">导航</td>
-					<td><input id = "Navigate" placeholder="0" value="10" class="skills"/></td>
+					<td><input id = "Navigate" placeholder="10" value="10" class="skills"/></td>
 					<td><button type="button" onclick="check('Navigate')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">游泳</td>
-					<td><input id = "Swim" placeholder="0" value="20" class="skills"/></td>
+					<td><input id = "Swim" placeholder="20" value="20" class="skills"/></td>
 					<td><button type="button" onclick="check('Swim')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">攀爬</td>
-					<td><input id = "Climb" placeholder="0" value="20" class="skills"/></td>
+					<td><input id = "Climb" placeholder="20" value="20" class="skills"/></td>
 					<td><button type="button" onclick="check('Climb')" style="margin-right: 10px"> 检定 </button></td>
 				</tr>
 				<tr>
 					<td class="skill-name">历史</td>
-					<td><input id = "History" placeholder="0" value="5" class="skills"/></td>
+					<td><input id = "History" placeholder="5" value="5" class="skills"/></td>
 					<td><button type="button" onclick="check('History')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">神秘学</td>
-					<td><input id = "Occult" placeholder="0" value="5" class="skills"/></td>
+					<td><input id = "Occult" placeholder="5" value="5" class="skills"/></td>
 					<td><button type="button" onclick="check('Occult')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">投掷</td>
-					<td><input id = "Throw" placeholder="0" value="20" class="skills"/></td>
+					<td><input id = "Throw" placeholder="20" value="20" class="skills"/></td>
 					<td><button type="button" onclick="check('Throw')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">恐吓</td>
-					<td><input id = "Intimidate" placeholder="0" value="15" class="skills"/></td>
+					<td><input id = "Intimidate" placeholder="15" value="15" class="skills"/></td>
 					<td><button type="button" onclick="check('Intimidate')" style="margin-right: 10px"> 检定 </button></td>
 				</tr>
 				<tr>
 					<td class="skill-name">操作重机</td>
-					<td><input id = "OperateHeavyMachinery" placeholder="0" value="1" class="skills"/></td>
+					<td><input id = "OperateHeavyMachinery" placeholder="1" value="1" class="skills"/></td>
 					<td><button type="button" onclick="check('OperateHeavyMachinery')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">追踪</td>
-					<td><input id = "Track" placeholder="0" value="10" class="skills"/></td>
+					<td><input id = "Track" placeholder="10" value="10" class="skills"/></td>
 					<td><button type="button" onclick="check('Track')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">克苏鲁</td>
 					<td><input id = "CthulhuMythos" placeholder="0" value="0" class="skills"/></td>
 					<td><button type="button" onclick="check('CthulhuMythos')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">跳跃</td>
-					<td><input id = "Jump" placeholder="0" value="20" class="skills"/></td>
+					<td><input id = "Jump" placeholder="20" value="20" class="skills"/></td>
 					<td><button type="button" onclick="check('Jump')" style="margin-right: 10px"> 检定 </button></td>
 				</tr>
 				<tr>
 					<td class="skill-name">说服</td>
-					<td><input id = "Persuade" placeholder="0" value="10" class="skills"/></td>
+					<td><input id = "Persuade" placeholder="10" value="10" class="skills"/></td>
 					<td><button type="button" onclick="check('Persuade')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">乔装</td>
-					<td><input id = "Disguise" placeholder="0" value="5" class="skills"/></td>
+					<td><input id = "Disguise" placeholder="5" value="5" class="skills"/></td>
 					<td><button type="button" onclick="check('Disguise')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">精神分析</td>
-					<td><input id = "Psychoanalysis" placeholder="0" value="1  " class="skills"/></td>
+					<td><input id = "Psychoanalysis" placeholder="1" value="1  " class="skills"/></td>
 					<td><button type="button" onclick="check('Psychoanalysis')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">汽车驾驶</td>
-					<td><input id = "DriveAuto" placeholder="0" value="20" class="skills"/></td>
+					<td><input id = "DriveAuto" placeholder="20" value="20" class="skills"/></td>
 					<td><button type="button" onclick="check('DriveAuto')" style="margin-right: 10px"> 检定 </button></td>
 				</tr>
 				<tr>
 					<td class="skill-name">心理学</td>
-					<td><input id = "Psychology" placeholder="0" value="10" class="skills"/></td>
+					<td><input id = "Psychology" placeholder="10" value="10" class="skills"/></td>
 					<td><button type="button" onclick="check('Psychology')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">电器维修</td>
-					<td><input id = "ElectricalRepair" placeholder="0" value="10" class="skills"/></td>
+					<td><input id = "ElectricalRepair" placeholder="10" value="10" class="skills"/></td>
 					<td><button type="button" onclick="check('ElectricalRepair')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">骑术</td>
-					<td><input id = "Ride" placeholder="0" value="5" class="skills"/></td>
+					<td><input id = "Ride" placeholder="5" value="5" class="skills"/></td>
 					<td><button type="button" onclick="check('Ride')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name">电脑使用</td>
-					<td><input id = "ComputerUse" placeholder="0" value="5" class="skills"/></td>
+					<td><input id = "ComputerUse" placeholder="5" value="5" class="skills"/></td>
 					<td><button type="button" onclick="check('ComputerUse')" style="margin-right: 10px"> 检定 </button></td>
 				</tr>
 				<tr>
 					<td class="skill-name">电子学</td>
-					<td><input id = "Electronics" placeholder="0" value="1" class="skills"/></td>
+					<td><input id = "Electronics" placeholder="1" value="1" class="skills"/></td>
 					<td><button type="button" onclick="check('Electronics')" style="margin-right: 10px"> 检定 </button></td>
+<!-- 					<td class="skill-name"></td>
+					<td><input id = "" placeholder="" value="" class="skills"/></td>
+					<td><button type="button" onclick="check('')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name"></td>
-					<td><input id = "POW" placeholder="0" value="" class="skills"/></td>
-					<td><button type="button" onclick="check('POW')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id = "" placeholder="" value="" class="skills"/></td>
+					<td><button type="button" onclick="check('')" style="margin-right: 10px"> 检定 </button></td>
 					<td class="skill-name"></td>
-					<td><input id = "POW" placeholder="0" value="" class="skills"/></td>
-					<td><button type="button" onclick="check('POW')" style="margin-right: 10px"> 检定 </button></td>
-					<td class="skill-name"></td>
-					<td><input id = "POW" placeholder="0" value="" class="skills"/></td>
-					<td><button type="button" onclick="check('POW')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id = "" placeholder="" value="" class="skills"/></td>
+					<td><button type="button" onclick="check('')" style="margin-right: 10px"> 检定 </button></td> -->
 				</tr>
 			</tbody>
 		</table>
+		<div>
+			<!-- 格斗 -->
+			<table>
+				<tr>
+					<td><input id='FightSkillName1' placeholder="斗殴" value="斗殴" class="blank-skill-name"/></td>
+					<td><input id='FightSkill1' placeholder="25" value="25" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('FightSkill1', 'FightSkillName1')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='FightSkillName2' placeholder="剑" value="剑" class="blank-skill-name"/></td>
+					<td><input id='FightSkill2' placeholder="20" value="20" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('FightSkill2', 'FightSkillName2')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='FightSkillName3' placeholder="连枷" value="连枷" class="blank-skill-name"/></td>
+					<td><input id='FightSkill3' placeholder="10" value="10" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('FightSkill3', 'FightSkillName3')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='FightSkillName4' placeholder="绞索" value="绞索" class="blank-skill-name"/></td>
+					<td><input id='FightSkill4' placeholder="15" value="15" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('FightSkill4', 'FightSkillName4')" style="margin-right: 10px"> 检定 </button></td>
+				</tr>
+			</table>
+			<!-- 射击 -->
+			<table>
+				<tr>
+					<td><input id='ShotSkillName1' placeholder="手枪" value="手枪" class="blank-skill-name"/></td>
+					<td><input id='ShotSkill1' placeholder="20" value="20" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('ShotSkill1', 'ShotSkillName1')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='ShotSkillName2' placeholder="步霰" value="步霰" class="blank-skill-name"/></td>
+					<td><input id='ShotSkill2' placeholder="25" value="25" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('ShotSkill2', 'ShotSkillName2')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='ShotSkillName3' placeholder="弓" value="弓" class="blank-skill-name"/></td>
+					<td><input id='ShotSkill3' placeholder="15" value="15" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('ShotSkill3', 'ShotSkillName3')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='ShotSkillName4' placeholder="冲锋枪" value="冲锋枪" class="blank-skill-name"/></td>
+					<td><input id='ShotSkill4' placeholder="15" value="15" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('ShotSkill4', 'ShotSkillName4')" style="margin-right: 10px"> 检定 </button></td>
+				</tr>
+			</table>
+			<!-- 语言： -->
+			<table>
+				<tr>
+					<td><input id='LanguageSkillName1' placeholder="母语" value="" class="blank-skill-name"/></td>
+					<td><input id='LanguageSkill1' placeholder="EDU" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('LanguageSkill1', 'LanguageSkillName1')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='LanguageSkillName2' placeholder="英语" value="" class="blank-skill-name"/></td>
+					<td><input id='LanguageSkill2' placeholder="1" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('LanguageSkill2', 'LanguageSkillName2')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='LanguageSkillName3' placeholder="中文" value="" class="blank-skill-name"/></td>
+					<td><input id='LanguageSkill3' placeholder="1" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('LanguageSkill3', 'LanguageSkillName3')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='LanguageSkillName4' placeholder="拉丁文" value="" class="blank-skill-name"/></td>
+					<td><input id='LanguageSkill4' placeholder="1" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('LanguageSkill4', 'LanguageSkillName4')" style="margin-right: 10px"> 检定 </button></td>
+				</tr>
+			</table>
+			<!-- 科学： -->
+			<table>
+				<tr>
+					<td><input id='ScienceSkillName1' placeholder="天文学" value="" class="blank-skill-name"/></td>
+					<td><input id='ScienceSkill1' placeholder="1" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('ScienceSkill1', 'ScienceSkillName1')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='ScienceSkillName2' placeholder="生物学" value="" class="blank-skill-name"/></td>
+					<td><input id='ScienceSkill2' placeholder="1" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('ScienceSkill2', 'ScienceSkillName2')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='ScienceSkillName3' placeholder="化学" value="" class="blank-skill-name"/></td>
+					<td><input id='ScienceSkill3' placeholder="1" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('ScienceSkill3', 'ScienceSkillName3')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='ScienceSkillName4' placeholder="密码学" value="" class="blank-skill-name"/></td>
+					<td><input id='ScienceSkill4' placeholder="1" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('ScienceSkill4', 'ScienceSkillName4')" style="margin-right: 10px"> 检定 </button></td>
+				</tr>
+			</table>
+			<!-- 其他： -->
+			<table>
+				<tr>
+					<td><input id='OtherSkillName1' placeholder="表演" value="" class="blank-skill-name"/></td>
+					<td><input id='OtherSkill1' placeholder="5" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('OtherSkill1', 'OtherSkillName1')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='OtherSkillName2' placeholder="伪造" value="" class="blank-skill-name"/></td>
+					<td><input id='OtherSkill2' placeholder="5" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('OtherSkill2', 'OtherSkillName2')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='OtherSkillName3' placeholder="美术" value="" class="blank-skill-name"/></td>
+					<td><input id='OtherSkill3' placeholder="5" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('OtherSkill3', 'OtherSkillName3')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='OtherSkillName4' placeholder="摄影" value="" class="blank-skill-name"/></td>
+					<td><input id='OtherSkill4' placeholder="5" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('OtherSkill4', 'OtherSkillName4')" style="margin-right: 10px"> 检定 </button></td>
+				</tr>
+				<tr>
+					<td><input id='OtherSkillName5' placeholder="动物驯养" value="" class="blank-skill-name"/></td>
+					<td><input id='OtherSkill5' placeholder="5" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('OtherSkill5', 'OtherSkillName5')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='OtherSkillName6' placeholder="炮术" value="" class="blank-skill-name"/></td>
+					<td><input id='OtherSkill6' placeholder="1" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('OtherSkill6', 'OtherSkillName6')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='OtherSkillName7' placeholder="爆破" value="" class="blank-skill-name"/></td>
+					<td><input id='OtherSkill7' placeholder="1" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('OtherSkill7', 'OtherSkillName7')" style="margin-right: 10px"> 检定 </button></td>
+					<td><input id='OtherSkillName8' placeholder="潜水" value="" class="blank-skill-name"/></td>
+					<td><input id='OtherSkill8' placeholder="1" value="" class="blank-skills"/></td>
+					<td><button type="button" onclick="checkwithname('OtherSkill8', 'OtherSkillName8')" style="margin-right: 10px"> 检定 </button></td>
+				</tr>
+			</table>
+		</div>
+		
 <!-- 		<input id = "player_file" type = "file"> -->
 <!-- 		<button type="button" onclick="read_player()"> 提交人物卡 </button> -->
 	</div>

@@ -9,3 +9,27 @@
 .skill-name{
 	text-align: center;
 }
+.blank-skill-name{
+	text-align: center;
+	width: 80px;
+}
+.blank-skills{
+	width: 65px;
+	margin-right: 10px;
+}
+.pl-name{
+	width: 115px;
+	margin-right: 10px;
+}
+.pl-age{
+	width: 60px;
+	margin-right: 10px;
+}
+.pl-gender{
+	width: 60px;
+	margin-right: 10px;
+}
+.pl-occupation{
+	width: 100px;
+	margin-right: 10px;
+}

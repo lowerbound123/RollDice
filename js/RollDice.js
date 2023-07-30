@@ -92,7 +92,7 @@ function SanCheck() {
 function add(s) {
 	var v = parseInt(document.getElementById(s).value);
 	v += 1;
-	
+	if (v > 99) v = 99;
 	
 	if (s == "HP") {
 		var top = (get_element_int("SIZ") + get_element_int("CON")) / 10;
@@ -112,8 +112,8 @@ function dec(s) {
 	v -= 1;
 	
 	if (v == -1) {
-		document.getElementById("Output").innerHTML += "<p style = \"margin:5px\">Dec Error</p>\n";
-		document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
+		// document.getElementById("Output").innerHTML += "<p style = \"margin:5px\">Dec Error</p>\n";
+		// document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
 		return;
 	}
 	
@@ -133,4 +133,21 @@ function check(s) {
 	if (!text.endsWith("</p>\n") && roll <= value) text += " Regular success</p>\n";
 	document.getElementById("Output").innerHTML += text;
 	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
+}
+
+function checkwithname(s1, s2) {
+	var value = parseInt(document.getElementById(s1).value);
+	var name = document.getElementById(s2).value
+	roll = CalculateDice("1d100")
+	var text = "<p style = \"margin:5px\">" + name + " check:1d100=" + roll;
+	if (roll > value) text += ">" + value; else text += "<" + value;
+	if ((value < 50 && roll >= 96) || (value >= 50 && roll >= 100)) text += " Fumble</p>\n";
+	if ((value < 50 && roll <= 1) || (value >= 50 && roll <= 5)) text += " Criticle</p>\n";
+	if (!text.endsWith("</p>\n") && roll > value) text += " Failure</p>\n";
+	if (!text.endsWith("</p>\n") && roll <= value / 5) text += " Extreme success</p>\n";
+	if (!text.endsWith("</p>\n") && roll <= value / 2) text += " Hard success</p>\n";
+	if (!text.endsWith("</p>\n") && roll <= value) text += " Regular success</p>\n";
+	document.getElementById("Output").innerHTML += text;
+	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
+	
 }
