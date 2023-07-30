@@ -60,7 +60,7 @@ function AnyDice(s) {
 	// 获取 id="numb" 的值
 	// s = document.getElementById("numb").value;
 	text = CalculateDice(s) + "";
-	document.getElementById("Output").innerHTML += "<p style = \"margin:5px\">" + s + " = " + text + "</p>";
+	document.getElementById("Output").innerHTML += "<p style = \"margin:5px\">" + s + " = " + text + "</p>\n";
 	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight
 }
 
@@ -72,18 +72,18 @@ function SanCheck() {
 	diceans = CalculateDice("1d100");
 	
 	if (diceans > s) {
-		text = "<p style = \"margin:5px\">1d100 = " + diceans + "\r and you failed</p>";
+		text = "<p style = \"margin:5px\">1d100 = " + diceans + "\r and you failed</p>\n";
 		sanlost = CalculateDice(lost);
-		text += "<p style = \"margin:5px\">and you lost " + win + " = " + CalculateDice(win) + " Sanity</p>";
+		text += "<p style = \"margin:5px\">and you lost " + win + " = " + CalculateDice(win) + " Sanity</p>\n";
 		
 	} else {
-		text = "<p style = \"margin:5px\">1d100 = " + diceans + " and you succeed</p>";
+		text = "<p style = \"margin:5px\">1d100 = " + diceans + " and you succeed</p>\n";
 		sanlost = CalculateDice(win);
-		text += "<p style = \"margin:5px\">and you lost " + lost + " = " + CalculateDice(win) + " Sanity</p>";
+		text += "<p style = \"margin:5px\">and you lost " + lost + " = " + CalculateDice(win) + " Sanity</p>\n";
 	}
 
-	if (sanlost > 5) text += "<p style = \"margin:5px\">Sadly you fell into madness.</p>";
-	if (sanlost >= s) text += "<p style = \"margin:5px\">You die</p>"
+	if (sanlost > 5) text += "<p style = \"margin:5px\">Sadly you fell into madness.</p>\n";
+	if (sanlost >= s) text += "<p style = \"margin:5px\">You die</p>\n"
 	document.getElementById("Output").innerHTML += text;
 	document.getElementById("san").value = (s - sanlost) + "";
 	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight
@@ -112,9 +112,25 @@ function dec(s) {
 	v -= 1;
 	
 	if (v == -1) {
-		document.getElementById("Output").innerHTML += "<p style = \"margin:5px\">Dec Error</p>";
+		document.getElementById("Output").innerHTML += "<p style = \"margin:5px\">Dec Error</p>\n";
+		document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
 		return;
 	}
 	
 	document.getElementById(s).value = v + "";
+}
+
+function check(s) {
+	var value = parseInt(document.getElementById(s).value);
+	roll = CalculateDice("1d100")
+	var text = "<p style = \"margin:5px\">" + s + " check:1d100=" + roll;
+	if (roll > value) text += ">" + value; else text += "<" + value;
+	if ((value < 50 && roll >= 96) || (value >= 50 && roll >= 100)) text += " Fumble</p>\n";
+	if ((value < 50 && roll <= 1) || (value >= 50 && roll <= 5)) text += " Criticle</p>\n";
+	if (!text.endsWith("</p>\n") && roll > value) text += " Failure</p>\n";
+	if (!text.endsWith("</p>\n") && roll <= value / 5) text += " Extreme success</p>\n";
+	if (!text.endsWith("</p>\n") && roll <= value / 2) text += " Hard success</p>\n";
+	if (!text.endsWith("</p>\n") && roll <= value) text += " Regular success</p>\n";
+	document.getElementById("Output").innerHTML += text;
+	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
 }
