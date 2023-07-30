@@ -167,7 +167,8 @@ function save() {
 	// clearAllCookies();
 	var inputs = document.getElementsByTagName("input");
 	for (var i = 0; i < inputs.length; i++) {
-		document.cookie = inputs[i].id + "=" + inputs[i].value;
+		var cookie_value = encodeURIComponent(inputs[i].value)
+		document.cookie = inputs[i].id + "=" + cookie_value;
 	}
 }
 
@@ -176,7 +177,7 @@ function load() {
 	for (var i = 0; i < cookies.length; i++) {
 		var cookie = cookies[i].trim().split("=")
 		var cookie_name = cookie[0]
-		var cookie_value = cookie[1]
+		var cookie_value = decodeURIComponent(cookie[1]);
 		document.getElementById(cookie_name).value = cookie_value;
 	}
 }
