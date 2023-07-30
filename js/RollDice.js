@@ -151,3 +151,32 @@ function checkwithname(s1, s2) {
 	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
 	
 }
+
+// function clearAllCookies() {
+//   var cookies = document.cookie.split(";");
+
+//   for (var i = 0; i < cookies.length; i++) {
+//     var cookie = cookies[i];
+//     var eqPos = cookie.indexOf("=");
+//     var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+//     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+//   }
+// }
+
+function save() {
+	// clearAllCookies();
+	var inputs = document.getElementsByTagName("input");
+	for (var i = 0; i < inputs.length; i++) {
+		document.cookie = inputs[i].id + "=" + inputs[i].value;
+	}
+}
+
+function load() {
+	var cookies = document.cookie.split(";");
+	for (var i = 0; i < cookies.length; i++) {
+		var cookie = cookies[i].trim().split("=")
+		var cookie_name = cookie[0]
+		var cookie_value = cookie[1]
+		document.getElementById(cookie_name).value = cookie_value;
+	}
+}
