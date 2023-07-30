@@ -1,0 +1,63 @@
+<!DOCTYPE html5>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<div id = "Header" style="text-align: center;">
+		<h1>RollDice</h1>
+	</div>
+	
+	<div id = "MainSection" style="float: left;">
+		<button type="button" onclick="AnyDice('1d100')" style="margin-right: 20px">1d100</button>
+		<button type="button" onclick="AnyDice('1d20')" style="margin-right: 20px">1d20</button>
+		<button type="button" onclick="AnyDice('1d10')" style="margin-right: 20px">1d10</button>
+		<button type="button" onclick="AnyDice('1d8')" style="margin-right: 20px">1d8</button>
+		<button type="button" onclick="AnyDice('1d6')" style="margin-right: 20px">1d6</button>
+		<button type="button" onclick="AnyDice('1d4')" style="margin-right: 20px">1d4</button>
+		<br/>
+		任意骰子：<input id="numb" placeholder="example:2d3+1d4+3">
+		<button type="button" onclick="AnyDice(document.getElementById('numb').value)">提交</button>
+		<br/>
+		理智值：<input id = "san" placeholder="Sanity" value=""/>
+		<button type="button" onclick="SanCheck()">San Check</button>
+<!-- 		<br/> -->
+		成功：<input id = "sanlost_win" placeholder="SanLost-Win"/>
+<!-- 		<br/> -->
+		失败：<input id = "sanlost_lost" placeholder="SanLost-Lost"/>
+		<br/>
+		HP：<input id = "HP" placeholder="0"/>
+		<button type="button" onclick="add('HP')"> +1 </button>
+		<button type="button" onclick="dec('HP')" style="margin-right: 20px"> -1 </button>
+		MP：<input id = "MP" placeholder="0"/>
+		<button type="button" onclick="add('MP')"> +1 </button>
+		<button type="button" onclick="dec('MP')" style="margin-right: 20px"> -1 </button>
+<!-- 		LUCK：<input id = "LUCK" placeholder="0"/> -->
+<!-- 		<button type="button" onclick="add('LUCK')"> +1 </button> -->
+<!-- 		<button type="button" onclick="dec(‘LUCK’)" style="margin-right: 20px"> -1 </button> -->
+		<br/>
+		力量：<input id = "STR" placeholder="0" value="" style="margin-right: 20px"/>
+		体质：<input id = "CON" placeholder="0" value="" style="margin-right: 20px"/>
+		体型：<input id = "SIZ" placeholder="0" value="" style="margin-right: 20px"/>
+		<br/>
+		敏捷：<input id = "DEX" placeholder="0" value="" style="margin-right: 20px"/>
+		容貌：<input id = "APP" placeholder="0" value="" style="margin-right: 20px"/>
+		智力：<input id = "INT" placeholder="0" value="" style="margin-right: 20px"/>
+		<br/>
+		意志：<input id = "POW" placeholder="0" value="" style="margin-right: 20px"/>
+		教育：<input id = "EDU" placeholder="0" value="" style="margin-right: 20px"/>
+		幸运：<input id = "LUCK" placeholder="0" value="" style="margin-right: 20px"/>
+		<br>
+<!-- 		<input id = "player_file" type = "file"> -->
+<!-- 		<button type="button" onclick="read_player()"> 提交人物卡 </button> -->
+	</div>
+	
+	<div id = "RightSection" style="float: right;">
+		<div id = "Output" style="height: 400px; overflow: auto;"></div>
+		<div id = "Output_end" style="height: 0px; overflow: hidden;"></div>
+	</div>	
+	
+	<script type = "text/javascript" src = "js/RollDice.js"></script>
+</body>
+</html>
