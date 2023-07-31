@@ -36,8 +36,11 @@ function CalculateDice(s) {
 	option[0] = 0;
 	for (var i = 0; i < s.length; i++) {
 		if (s[i] <= '9' && s[i] >= '0') number[n] = number[n] * 10 + parseInt(s[i] + "");
-		if (s[i] == 'd') option[n] = 2, n++, number[n] = 0;
+		if (s[i] == 'd' || s[i] == 'D') option[n] = 2, n++, number[n] = 0;
 		if (s[i] == '+') option[n] = 1, n++, number[n] = 0;
+		if (s[i] == '-') option[n] = 3, n++, number[n] = 0;
+		// if (s[i] == '*') option[n] = 4, n++, number[n] = 0;
+		// if (s[i] == '/') option[n] = 5, n++, number[n] = 0;
 	}
 	// console.log("finished for 1");
 	option[n] = 0;
@@ -50,8 +53,15 @@ function CalculateDice(s) {
 			number[i] = 0;
 		}
 	}
-	var ans = 0;
-	for (var i = 0; i <= n; i++) ans += number[i];
+	
+	var ans = number[0];
+	var opt = 1;
+	for (var i = 1; i <= n; i++) {
+		if (option[i - 1] == 1) opt = 1;
+		if (option[i - 1] == 3) opt = 3;
+		if (opt == 1) ans += number[i];
+		if (opt == 3) ans -= number[i];
+	}
 	return ans;
 }
 
