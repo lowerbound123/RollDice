@@ -217,3 +217,9 @@ function submitinput(event) {
 	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
 	document.getElementById("InputField").value = "";
 }
+
+document.getElementById("InputField").addEventListener("keydown", function(event) {
+  if (event.keyCode === 13) {
+	  submitinput(event)
+  }
+});
