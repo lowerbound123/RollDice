@@ -180,6 +180,8 @@ function save() {
 		var cookie_value = encodeURIComponent(inputs[i].value)
 		document.cookie = inputs[i].id + "=" + cookie_value;
 	}
+	document.getElementById("Output").innerHTML += "<p style = \"margin:10px\"> You have successfully saved your Character Card. </p>\n"
+	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
 }
 
 function load() {
@@ -190,4 +192,28 @@ function load() {
 		var cookie_value = decodeURIComponent(cookie[1]);
 		document.getElementById(cookie_name).value = cookie_value;
 	}
+	document.getElementById("Output").innerHTML += "<p style = \"margin:10px\"> Load last Character Card successfully. </p>\n"
+	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
+}
+
+var lastoption = "";
+
+function submitinput(event) {
+	event.preventDefault();
+	var input = document.getElementById("InputField").value;
+	if (input.toLowerCase() == "repeat" || input.toLowerCase == "re" || input == "") input = lastoption; else lastoption = input;
+	var arg = input.split(' ');
+	arg[0] = arg[0].toLowerCase();
+	if (arg[0] == "roll" || arg[0] == "r") {
+		ans = CalculateDice(arg[1]);
+		document.getElementById("Output").innerHTML += "<p style = \"margin:10px\">" + input + '=' + ans + "</p>\n"
+	} else if (arg[0] == "repeat" || arg[0] == "re") {
+		
+	} else {
+		ans = "illegal command \'" + arg[0] + "\' is not found";
+		document.getElementById("Output").innerHTML += "<p style = \"margin:10px\">" + ans + "</p>\n"
+	}
+	
+	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
+	document.getElementById("InputField").value = "";
 }

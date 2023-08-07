@@ -7,9 +7,22 @@
 <body>
 	<link rel="stylesheet" type="text/css" href="css/inputfield.css">
 	<link rel="stylesheet" type="text/css" href="css/divfield.css">
-	<div id = "Header">
-		<h1 style="text-align: center;">RollDice</h1>
+	
+	<div id = "Header" style="display: flex; justify-content: center; align-items: center;">
+		<h1 style="position: absolute; left: 40%; top: 0%;">RollDice</h1>
+		<div style="position: absolute; right: 10%; top: 15px;">
+			<div style="display: inline-block;">
+				<label for="passowrd">password:</label><input id = "username" placeholder="username"> <br/>
+				password:<input id = "password" type = "password" placeholder="password">
+			</div>
+			<button type="button" onclick="login()" style="height: 40px; margin-left: 5px;">login</button>
+		</div>
 	</div>
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 	
 	<div id = "MainSection" style="float: left;">
 		<!-- 一些常用的骰子 -->
@@ -336,8 +349,13 @@
 	</div>
 	
 	<div id = "RightSection" style="float: right;">
-		<div id = "Output" style="height: 400px; overflow: auto;"></div>
+		<div id = "Output" style="height: 600px; overflow: auto;"></div>
 		<div id = "Output_end" style="height: 0px; overflow: hidden;"></div>
+		<form onsubmit="submitinput()">
+			<input id = "InputField" type = "text" style="width: 340px;"/>
+			<input id = "InputFieldSubmit" type="button" value="submit" onclick="submitinput(event)"/>
+		</form>
+		
 	</div>	
 	
 	<script type = "text/javascript" src = "js/RollDice.js"></script>
