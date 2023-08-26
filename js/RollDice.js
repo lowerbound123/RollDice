@@ -210,7 +210,7 @@ function checkwithname(s1, s2) {
 	var value = parseInt(document.getElementById(s1).value);
 	var name = document.getElementById(s2).value
 	roll = CalculateDice("1d100")
-	var text = "<p style = \"margin:5px\">" + name + " check:1d100 = " + roll;
+	var text = name + " check:1d100 = " + roll;
 	if (roll > value) text += " > " + value; else text += " < " + value;
 	if ((value < 50 && roll >= 96) || (value >= 50 && roll >= 100)) text += " Fumble"; else
 	if ((value < 50 && roll <= 1) || (value >= 50 && roll <= 5)) text += " Criticle"; else
