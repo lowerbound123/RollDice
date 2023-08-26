@@ -258,6 +258,10 @@ var lastoption = "";
 function submitinput() {
 	var input = document.getElementById("InputField").value;
 	document.getElementById("InputField").value = "";
+	if (input == "" && lastoption == "") {
+		PrintOutput("You do not have any order history.");
+		return;
+	}
 	if (input.toLowerCase() == ".repeat" || input.toLowerCase == ".re" || input == "") input = lastoption; else
 		if (input[0] != '.') {
 			PrintOutput(input, "Player");
