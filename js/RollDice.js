@@ -203,6 +203,10 @@ function check(s) {
 }
 
 function checkwithname(s1, s2) {
+	if (document.getElementById(s1).value == '') {
+		PrintOutput("This skill is empty.");
+		return;
+	}
 	var value = parseInt(document.getElementById(s1).value);
 	var name = document.getElementById(s2).value
 	roll = CalculateDice("1d100")
@@ -214,9 +218,7 @@ function checkwithname(s1, s2) {
 	if (roll <= value / 5) text += " Extreme success"; else
 	if (roll <= value / 2) text += " Hard success"; else
 	if (roll <= value) text += " Regular success";
-	document.getElementById("Output").innerHTML += text;
-	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
-	
+	PrintOutput(text);
 }
 
 function save() {
