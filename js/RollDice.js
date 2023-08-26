@@ -65,13 +65,74 @@ function CalculateDice(s) {
 	return ans;
 }
 
+var log = ""
+
+function PrintOutput(s, sender= "Dice Goddess", style="margin:10px") {
+	var currentDate = new Date();
+	var currentYear = currentDate.getFullYear().toString().padStart(4, '0'); // 获取当前年份
+	var currentMonth = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 获取当前月份（注意月份从0开始，所以需要加1）
+	var currentDay = currentDate.getDate().toString().padStart(2, '0'); // 获取当前日期
+	var currentHour = currentDate.getHours().toString().padStart(2, '0'); // 获取当前小时
+	var currentMinute = currentDate.getMinutes().toString().padStart(2, '0'); // 获取当前分钟
+	var currentSecond = currentDate.getSeconds().toString().padStart(2, '0'); // 获取当前秒数
+	timeString = `${currentYear}${currentMonth}${currentDay}-${currentHour}:${currentMinute}:${currentSecond}`
+	document.getElementById("Output").innerHTML += "<p style = \"" + style + "\">" + s + "</p>\n";
+	style = "color:gray; font-size:10px; margin-top:-12px; text-align: right";
+	var color = "color: blue";
+	if (sender == "Dice Goddess") color = "color:red";
+	document.getElementById("Output").innerHTML += `<p style = "${style}"> from <span style="${color}">${sender}</span> at ${timeString} </p>\n`;
+	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
+	// log += "[" + currentYear + '-' + "]" + s + '\n';
+	log += `[${timeString} @${sender}]: ${s}\n`;
+}
+
 function AnyDice(s) {
 	var text;
 	// 获取 id="numb" 的值
 	// s = document.getElementById("numb").value;
 	text = CalculateDice(s) + "";
-	document.getElementById("Output").innerHTML += "<p style = \"margin:5px\">" + s + " = " + text + "</p>\n";
-	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight
+	PrintOutput(s + " = " + text)
+}
+
+function CalculateWithTwo(a, b) {
+	if (a == 0 && b == 0) return 100;
+	return a * 10 + b;
+}
+
+function RewardDice(num) {
+	var output = CalculateDice('1d100');
+	var ten, one, another, output;
+	ten = parseInt(output / 10);
+	if (ten == 10) ten = 0;
+	one = output % 10;
+	
+	output = `rd${num}=[${ten}`;
+	for (var i = 0; i < num; i++) {
+		another = CalculateDice('1d10');
+		if (another == 10) another = 0;
+		output += " " + another;
+		if (CalculateWithTwo(another, one) < CalculateWithTwo(ten, one)) ten = another;
+	}
+	PrintOutput(output + `] ${one} = ${CalculateWithTwo(ten, one)}`);
+	return;
+}
+
+function PunishDice(num) {
+	var output = CalculateDice('1d100');
+	var ten, one, another, output;
+	ten = parseInt(output / 10);
+	if (ten == 10) ten = 0;
+	one = output % 10;
+	
+	output = `pd${num}=[${ten}`;
+	for (var i = 0; i < num; i++) {
+		another = CalculateDice('1d10');
+		if (another == 10) another = 0;
+		output += " " + another;
+		if (CalculateWithTwo(another, one) > CalculateWithTwo(ten, one)) ten = another;
+	}
+	PrintOutput(output + `] ${one} = ${CalculateWithTwo(ten, one)}`);
+	return;
 }
 
 function SanCheck() {
@@ -82,21 +143,20 @@ function SanCheck() {
 	diceans = CalculateDice("1d100");
 	
 	if (diceans > s) {
-		text = "<p style = \"margin:5px\">1d100 = " + diceans + "\r and you failed</p>\n";
+		text = "1d100 = " + diceans + " > " + s + " you failed";
 		sanlost = CalculateDice(lost);
-		text += "<p style = \"margin:5px\">and you lost " + win + " = " + CalculateDice(win) + " Sanity</p>\n";
-		
+		text += "and you lost " + win + " = " + sanlost + " Sanity";
 	} else {
-		text = "<p style = \"margin:5px\">1d100 = " + diceans + " and you succeed</p>\n";
+		text = "1d100 = " + diceans + " < " + s +  " you succeed";
 		sanlost = CalculateDice(win);
-		text += "<p style = \"margin:5px\">and you lost " + lost + " = " + CalculateDice(win) + " Sanity</p>\n";
+		text += "and you lost " + lost + " = " + sanlost + " Sanity";
 	}
-
-	if (sanlost > 5) text += "<p style = \"margin:5px\">Sadly you fell into madness.</p>\n";
-	if (sanlost >= s) text += "<p style = \"margin:5px\">You die</p>\n"
-	document.getElementById("Output").innerHTML += text;
+	PrintOutput(text);
+	
+	if (sanlost >= 5) text = "Sadly you fell into madness.";
+	if (sanlost >= s) text = "You die.";
+	if (sanlost >= 5 || sanlost >= s) PrintOutput(text);
 	document.getElementById("san").value = (s - sanlost) + "";
-	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight
 }
 
 function add(s) {
@@ -122,8 +182,6 @@ function dec(s) {
 	v -= 1;
 	
 	if (v == -1) {
-		// document.getElementById("Output").innerHTML += "<p style = \"margin:5px\">Dec Error</p>\n";
-		// document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
 		return;
 	}
 	
@@ -133,45 +191,33 @@ function dec(s) {
 function check(s) {
 	var value = parseInt(document.getElementById(s).value);
 	roll = CalculateDice("1d100")
-	var text = "<p style = \"margin:5px\">" + s + " check:1d100=" + roll;
-	if (roll > value) text += ">" + value; else text += "<" + value;
-	if ((value < 50 && roll >= 96) || (value >= 50 && roll >= 100)) text += " Fumble</p>\n";
-	if ((value < 50 && roll <= 1) || (value >= 50 && roll <= 5)) text += " Criticle</p>\n";
-	if (!text.endsWith("</p>\n") && roll > value) text += " Failure</p>\n";
-	if (!text.endsWith("</p>\n") && roll <= value / 5) text += " Extreme success</p>\n";
-	if (!text.endsWith("</p>\n") && roll <= value / 2) text += " Hard success</p>\n";
-	if (!text.endsWith("</p>\n") && roll <= value) text += " Regular success</p>\n";
-	document.getElementById("Output").innerHTML += text;
-	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
+	var text = s + " check:1d100 = " + roll;
+	if (roll > value) text += " > " + value; else text += " < " + value;
+	if ((value < 50 && roll >= 96) || (value >= 50 && roll >= 100)) text += " Fumble"; else
+	if ((value < 50 && roll <= 1) || (value >= 50 && roll <= 5)) text += " Criticle"; else 
+	if (roll > value) text += " Failure"; else
+	if (roll <= value / 5) text += " Extreme success"; else
+	if (roll <= value / 2) text += " Hard success"; else
+	if (roll <= value) text += " Regular success";
+	PrintOutput(text);
 }
 
 function checkwithname(s1, s2) {
 	var value = parseInt(document.getElementById(s1).value);
 	var name = document.getElementById(s2).value
 	roll = CalculateDice("1d100")
-	var text = "<p style = \"margin:5px\">" + name + " check:1d100=" + roll;
-	if (roll > value) text += ">" + value; else text += "<" + value;
-	if ((value < 50 && roll >= 96) || (value >= 50 && roll >= 100)) text += " Fumble</p>\n";
-	if ((value < 50 && roll <= 1) || (value >= 50 && roll <= 5)) text += " Criticle</p>\n";
-	if (!text.endsWith("</p>\n") && roll > value) text += " Failure</p>\n";
-	if (!text.endsWith("</p>\n") && roll <= value / 5) text += " Extreme success</p>\n";
-	if (!text.endsWith("</p>\n") && roll <= value / 2) text += " Hard success</p>\n";
-	if (!text.endsWith("</p>\n") && roll <= value) text += " Regular success</p>\n";
+	var text = "<p style = \"margin:5px\">" + name + " check:1d100 = " + roll;
+	if (roll > value) text += " > " + value; else text += " < " + value;
+	if ((value < 50 && roll >= 96) || (value >= 50 && roll >= 100)) text += " Fumble"; else
+	if ((value < 50 && roll <= 1) || (value >= 50 && roll <= 5)) text += " Criticle"; else
+	if (roll > value) text += " Failure"; else
+	if (roll <= value / 5) text += " Extreme success"; else
+	if (roll <= value / 2) text += " Hard success"; else
+	if (roll <= value) text += " Regular success";
 	document.getElementById("Output").innerHTML += text;
 	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
 	
 }
-
-// function clearAllCookies() {
-//   var cookies = document.cookie.split(";");
-
-//   for (var i = 0; i < cookies.length; i++) {
-//     var cookie = cookies[i];
-//     var eqPos = cookie.indexOf("=");
-//     var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-//     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-//   }
-// }
 
 function save() {
 	// clearAllCookies();
@@ -180,8 +226,9 @@ function save() {
 		var cookie_value = encodeURIComponent(inputs[i].value)
 		document.cookie = inputs[i].id + "=" + cookie_value;
 	}
-	document.getElementById("Output").innerHTML += "<p style = \"margin:10px\"> You have successfully saved your Character Card. </p>\n"
-	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
+	document.cookie = "log=" + encodeURIComponent(log);
+	document.cookie = "Output=" + encodeURIComponent(document.getElementById("Output").innerHTML);
+	PrintOutput("You have successfully saved your Character Card.");
 }
 
 function load() {
@@ -190,36 +237,124 @@ function load() {
 		var cookie = cookies[i].trim().split("=")
 		var cookie_name = cookie[0]
 		var cookie_value = decodeURIComponent(cookie[1]);
+		if (cookie_name == "log") {
+			log = cookie_value;
+			continue;
+		}
+		if (cookie_name == "Output") {
+			document.getElementById("Output").innerHTML = cookie_value;
+			continue;
+		}
 		document.getElementById(cookie_name).value = cookie_value;
 	}
-	document.getElementById("Output").innerHTML += "<p style = \"margin:10px\"> Load last Character Card successfully. </p>\n"
-	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
+	
+	PrintOutput("Load last Character Card successfully.");
 }
 
 var lastoption = "";
 
-function submitinput(event) {
-	event.preventDefault();
+function submitinput() {
 	var input = document.getElementById("InputField").value;
-	if (input.toLowerCase() == "repeat" || input.toLowerCase == "re" || input == "") input = lastoption; else lastoption = input;
+	document.getElementById("InputField").value = "";
+	if (input.toLowerCase() == ".repeat" || input.toLowerCase == ".re" || input == "") input = lastoption; else
+		if (input[0] != '.') {
+			PrintOutput(input, "Player");
+			return;
+		} else input = input.slice(1);
 	var arg = input.split(' ');
 	arg[0] = arg[0].toLowerCase();
 	if (arg[0] == "roll" || arg[0] == "r") {
-		ans = CalculateDice(arg[1]);
-		document.getElementById("Output").innerHTML += "<p style = \"margin:10px\">" + input + '=' + ans + "</p>\n"
+		if (arg.length == 1) {
+			PrintOutput("Illegal parameter.")
+		} else {
+			ans = CalculateDice(arg[1]);
+			PrintOutput("Roll" + arg[1] + ' = ' + ans);
+			lastoption = input;
+		}
 	} else if (arg[0] == "repeat" || arg[0] == "re") {
-		
+		input = lastoption;
+		submitinput();
+		return;
 	} else {
-		ans = "illegal command \'" + arg[0] + "\' is not found";
-		document.getElementById("Output").innerHTML += "<p style = \"margin:10px\">" + ans + "</p>\n"
+		PrintOutput("illegal command \'" + arg[0] + "\' is not found");
 	}
-	
-	document.getElementById("Output").scrollTop = document.getElementById("Output").scrollHeight;
-	document.getElementById("InputField").value = "";
 }
 
-document.getElementById("InputField").addEventListener("keydown", function(event) {
-  if (event.keyCode === 13) {
-	  submitinput(event)
-  }
-});
+function saveasjson() {
+	var inputs = document.getElementsByTagName("input");
+	var savedata = {};
+	for (var i = 0; i < inputs.length; i++) {
+		var value = encodeURIComponent(inputs[i].value)
+		savedata[inputs[i].id] = value;
+	}
+	savedata["log"] = encodeURIComponent(log);
+	savedata["Output"] = encodeURIComponent(document.getElementById("Output").innerHTML);
+	
+	var jsonstring = JSON.stringify(savedata);
+	var blob = new Blob([jsonstring], { type: "application/json" });
+	var url = URL.createObjectURL(blob);
+	var link = document.createElement("a");
+	link.href = url;
+	
+	link.download = "save.json";	
+	link.style.display = "none";
+	document.body.appendChild(link);
+	
+	link.click();
+	
+	document.body.removeChild(link);
+	URL.revokeObjectURL(url);
+	PrintOutput("Out put the data to save.json.");
+}
+
+function loadfromjson() {
+	var fileInput = document.getElementById("savefile");
+	var file = fileInput.files[0];
+	var reader = new FileReader();
+	reader.onload = function(event) {
+		var data = JSON.parse(event.target.result);
+		for (var key in data) {
+			var place = document.getElementById(key);
+			if (place == 'log') {
+				log = decodeURIComponent(data[key]);
+				continue;
+			}
+			if (place == 'Output') {
+				document.getElementById('Output').innerHTML = decodeURIComponent(data[key]);
+				continue;
+			}
+			if (place != null) {
+				place.value = decodeURIComponent(data[key]);
+			}
+		}
+	}
+	reader.readAsText(file, "UTF-8");
+	PrintOutput("Successfully loaded from a JSON file");
+}
+
+document.getElementById("InputField").addEventListener("keydown", EnterIsDown("submitinput()"));
+
+function EnterIsDown(param) {
+	return function(event) {
+	    if (event.key === "Enter") {
+	      eval(param);
+	    }
+	}
+}
+
+function OutputLog() {
+	var blob = new Blob([log], { type: "text/plain" });
+	var url = URL.createObjectURL(blob);
+	var link = document.createElement("a");
+	link.href = url;
+	
+	link.download = "log.txt";	
+	link.style.display = "none";
+	document.body.appendChild(link);
+	
+	link.click();
+	
+	document.body.removeChild(link);
+	URL.revokeObjectURL(url);
+	PrintOutput("Out put the data to log.txt.");
+}

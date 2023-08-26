@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<!-- <script src = "js/BasicFunctions.js"  type = "module"></script> -->
 </head>
 
 <body>
@@ -32,6 +33,10 @@
 		<button type="button" onclick="AnyDice('1d8')" style="margin-right: 20px">1d8</button>
 		<button type="button" onclick="AnyDice('1d6')" style="margin-right: 20px">1d6</button>
 		<button type="button" onclick="AnyDice('1d4')" style="margin-right: 20px">1d4</button>
+		<button type="button" onclick="RewardDice(1)" style="margin-right: 20px">奖励骰x1</button>
+		<button type="button" onclick="RewardDice(2)" style="margin-right: 20px">奖励骰x2</button>
+		<button type="button" onclick="PunishDice(1)" style="margin-right: 20px">惩罚骰x1</button>
+		<button type="button" onclick="PunishDice(2)" style="margin-right: 20px">惩罚骰x2</button>
 		<br/>
 		
 		<!-- 任意骰子 -->
@@ -344,6 +349,9 @@
 		<br/>
 		<button type="button" onclick="save()">save</button>
 		<button type="button" onclick="load()">load</button>
+		<button type="button" onclick="saveasjson()">save as json</button>
+		<button type="button" onclick="loadfromjson()">load from json</button>
+		<input type="file" id="savefile" value="select file"/>
 <!-- 		<input id = "player_file" type = "file"> -->
 <!-- 		<button type="button" onclick="read_player()"> 提交人物卡 </button> -->
 	</div>
@@ -352,13 +360,12 @@
 		<div id = "Output" style="height: 600px; overflow: auto;"></div>
 		<div id = "Output_end" style="height: 0px; overflow: hidden;"></div>
 		<!-- <form onsubmit="submitinput(event)"> -->
-		<input id = "InputField" type = "text" style="width: 340px;"/>
-		<button type="button" onclick="submitinput(event)">submit</button>
-			<!-- <input id = "InputFieldSubmit" type="button" value="submit" onclick="submitinput(event)"/> -->
+		<input id = "InputField" type = "text" style="width: 300px;"/>
+		<button type="button" onclick="submitinput()">submit</button>
+		<button type="button" onclick="OutputLog()">log</button>
 		<!-- </form> -->
 		
 	</div>	
-	
-	<script type = "text/javascript" src = "js/RollDice.js"></script>
+	<script src = "js/RollDice.js"  type = "text/javascript"></script>
 </body>
 </html>
