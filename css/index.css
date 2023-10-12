@@ -1,0 +1,14 @@
+.main_button{
+	width: 400px;
+	height: 100px;
+	font-size: 50px;
+	margin-bottom: 25px;
+}
+.main_button_field {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	/* min-height: 50vh; */
+	margin-top: 100px;
+}

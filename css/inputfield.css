@@ -1,9 +1,9 @@
 .basic-characteristic{
-	width: 100px;
+	width: 30px;
 	margin-right: 10px;
 }
 .skills{
-	width: 80px;
+	width: 30px;
 	margin-right: 10px;
 }
 .skill-name{
@@ -11,14 +11,14 @@
 }
 .blank-skill-name{
 	text-align: center;
-	width: 80px;
+	width: 60px;
 }
 .blank-skills{
-	width: 65px;
+	width: 30px;
 	margin-right: 10px;
 }
 .pl-name{
-	width: 115px;
+	width: 100px;
 	margin-right: 10px;
 }
 .pl-age{
@@ -30,6 +30,6 @@
 	margin-right: 10px;
 }
 .pl-occupation{
-	width: 100px;
+	width: 148px;
 	margin-right: 10px;
 }
