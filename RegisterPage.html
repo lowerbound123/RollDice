@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RegisterPage</title>
+</head>
+<body class="body">
+<link rel="stylesheet" type="text/css" href="css/RegisterPage.css">
+<div id = "Header" style="display: flex; justify-content: center; align-items: center;">
+    <h1 class="RollDiceHead">RollDice</h1>
+</div>
+<div class="LoginField">
+    <div class="LoginBox">
+        <div class="usernameContainer">
+            <div class="usernameWord">
+                用户名：
+            </div>
+            <input class="usernameInput" id = "username" placeholder="username">
+        </div>
+        <div class="passwordContainer">
+            <div class="passwordWord">
+                密&nbsp&nbsp&nbsp&nbsp码：
+            </div>
+            <input class="passwordInput" id = "password" type="password" placeholder="password">
+        </div>
+        <div class="emailContainer">
+            <div class="emailWord">
+                &nbsp邮&nbsp&nbsp&nbsp箱：
+            </div>
+            <input class="emailInput" id = "email" placeholder="e-mail">
+        </div>
+        <button class="registerButton" onclick="register()">注册</button>
+    </div>
+</div>
+<script src = "js/RegisterPage.js"  type = "text/javascript"></script>
+</body>
+</html>
