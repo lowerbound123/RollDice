@@ -1,3 +1,8 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .body {
     margin: 0;
     padding: 0;
@@ -7,15 +12,18 @@
     text-align: center;
     /*background-color: antiquewhite;*/
     height: 42px;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
 }
-.LoginField {
+.registerField {
     display: flex;
     flex-direction: column;
     height: 1000px;
     justify-content: center;
     align-items: center;
 }
-.LoginBox {
+.registerBox {
     /*background-color: #0011ff; !* 设置背景颜色以便观察效果 *!*/
     display: flex;
     flex-direction: column;
@@ -24,6 +32,11 @@
     height: 500px;
     width: 400px;
     border: 2px black solid;
+}
+.registerWord {
+    margin-top: -40px;
+    margin-bottom: 70px;
+    font-size: 50px;
 }
 .usernameContainer {
     display: flex;

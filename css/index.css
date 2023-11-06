@@ -12,3 +12,38 @@
 	/* min-height: 50vh; */
 	margin-top: 100px;
 }
+.basic-characteristic{
+	width: 30px;
+	margin-right: 10px;
+}
+.skills{
+	width: 30px;
+	margin-right: 10px;
+}
+.skill-name{
+	text-align: center;
+}
+.blank-skill-name{
+	text-align: center;
+	width: 60px;
+}
+.blank-skills{
+	width: 30px;
+	margin-right: 10px;
+}
+.pl-name{
+	width: 100px;
+	margin-right: 10px;
+}
+.pl-age{
+	width: 60px;
+	margin-right: 10px;
+}
+.pl-gender{
+	width: 60px;
+	margin-right: 10px;
+}
+.pl-occupation{
+	width: 148px;
+	margin-right: 10px;
+}

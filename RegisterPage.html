@@ -6,27 +6,32 @@
 </head>
 <body class="body">
 <link rel="stylesheet" type="text/css" href="css/RegisterPage.css">
-<div id = "Header" style="display: flex; justify-content: center; align-items: center;">
-    <h1 class="RollDiceHead">RollDice</h1>
+<div id = "Header" class="header">
+    <a href="index.html" class="RollDiceHead">
+        <h1 class="headerWord">RollDice</h1>
+    </a>
 </div>
-<div class="LoginField">
-    <div class="LoginBox">
+<div class="registerField">
+    <div class="registerBox">
+        <div class="registerWord">
+            注册
+        </div>
         <div class="usernameContainer">
-            <div class="usernameWord">
+            <label for="username" class="usernameWord">
                 用户名：
-            </div>
+            </label>
             <input class="usernameInput" id = "username" placeholder="username">
         </div>
         <div class="passwordContainer">
-            <div class="passwordWord">
+            <label for="password" class="passwordWord">
                 密&nbsp&nbsp&nbsp&nbsp码：
-            </div>
+            </label>
             <input class="passwordInput" id = "password" type="password" placeholder="password">
         </div>
         <div class="emailContainer">
-            <div class="emailWord">
+            <label for="email" class="emailWord">
                 &nbsp邮&nbsp&nbsp&nbsp箱：
-            </div>
+            </label>
             <input class="emailInput" id = "email" placeholder="e-mail">
         </div>
         <button class="registerButton" onclick="register()">注册</button>

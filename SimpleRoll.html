@@ -1,22 +1,16 @@
-<!DOCTYPE html5>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<!-- <script src = "js/BasicFunctions.js"  type = "module"></script> -->
 </head>
 <body>
-	<link rel="stylesheet" type="text/css" href="css/inputfield.css">
-	<link rel="stylesheet" type="text/css" href="css/divfield.css">
-	
-	<div id = "Header" style="display: flex; justify-content: center; align-items: center;">
-		<h1 style="position: absolute; left: 40%; top: 0%;">RollDice</h1>
-		<div style="position: absolute; right: 10%; top: 15px;">
-			<div style="display: inline-block;">
-				<label for="passowrd">username:</label><input id = "username" placeholder="username"> <br/>
-				password:<input id = "password" type = "password" placeholder="password">
-			</div>
-			<button type="button" onclick="login()" style="height: 40px; margin-left: 5px;">login</button>
-		</div>
+	<link rel="stylesheet" type="text/css" href="css/SimpleRoll.css">
+
+	<div id = "Header" class="header">
+		<a href="index.html" class="RollDiceHead">
+			<h1 class="headerWord">RollDice</h1>
+		</a>
 	</div>
 	
 	<br/>
@@ -65,28 +59,25 @@
 		<!-- 		<br/> -->
 				失败：<input id = "sanlost_lost" placeholder="SanLost-Lost"/>
 		<br/>
-		力量：<input id = "STR" placeholder="0" value="" class="basic-characteristic"/>
+		力量 <input id = "STR" placeholder="0" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('STR')" style="margin-right: 10px"> 检定 </button>
-		体质：<input id = "CON" placeholder="0" value="" class="basic-characteristic"/>
+		体质 <input id = "CON" placeholder="0" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('CON')" style="margin-right: 10px"> 检定 </button>
-		体型：<input id = "SIZ" placeholder="0" value="" class="basic-characteristic"/>
+		体型 <input id = "SIZ" placeholder="0" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('SIZ')" style="margin-right: 10px"> 检定 </button>
-		敏捷：<input id = "DEX" placeholder="0" value="" class="basic-characteristic"/>
+		敏捷 <input id = "DEX" placeholder="0" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('DEX')" style="margin-right: 10px"> 检定 </button>
-		容貌：<input id = "APP" placeholder="0" value="" class="basic-characteristic"/>
+		容貌 <input id = "APP" placeholder="0" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('APP')" style="margin-right: 10px"> 检定 </button>
-		智力：<input id = "INT" placeholder="0" value="" class="basic-characteristic"/>
+		智力 <input id = "INT" placeholder="0" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('INT')" style="margin-right: 10px"> 检定 </button>
-		<br/>
-		意志：<input id = "POW" placeholder="0" value="" class="basic-characteristic"/>
+		意志 <input id = "POW" placeholder="0" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('POW')" style="margin-right: 10px"> 检定 </button>
-		教育：<input id = "EDU" placeholder="0" value="" class="basic-characteristic"/>
+		教育 <input id = "EDU" placeholder="0" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('EDU')" style="margin-right: 10px"> 检定 </button>
-		智力：<input id = "INT" placeholder="0" value="" class="basic-characteristic"/>
-		<button type="button" onclick="check('INT')" style="margin-right: 10px"> 检定 </button>
 		<br/>
 		伤害加值：<input id = "DB" placeholder="0" value="" style="width: 120px; margin-right: 10px;"/>
-		体格：<input id = "Build" placeholder="0" value="" style="width: 155px; margin-right: 10px;""/>
+		体格：<input id = "Build" placeholder="0" value="" style="width: 155px; margin-right: 10px;"/>
 		闪避：<input id = "Dodge" placeholder="DEX/2" value="" class="basic-characteristic"/>
 		<button type="button" onclick="check('Dodge')" style="margin-right: 10px"> 检定 </button>
 		<br>
