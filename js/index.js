@@ -10,4 +10,12 @@ function redirectToPage(x) {
 		window.location.href = "RegisterPage.html";
 		console.log("You tried to go to RegisterPage")
 	}
+	if (x === "RoleBase") {
+		window.location.href = "RoleBase.html";
+		console.log("You tried to go to RoleBase");
+	}
+	if (x === "ItemBase") {
+		window.location.href = "ItemBase.html";
+		console.log("You tried to go to ItemBase");
+	}
 }
