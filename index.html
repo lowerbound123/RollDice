@@ -12,19 +12,20 @@
 				<h1 style="position: absolute; left: 40%; top: 0;">RollDice</h1>
 			</a>
 			<div style="position: absolute; right: 10%; top: 15px; display: inline-block">
-				<button onclick="redirectToPage('LoginPage')">登入</button>
-				<button onclick="redirectToPage('RegisterPage')">注册</button>
+				<button id="LoginPage">登入</button>
+				<button id="RegisterPage">注册</button>
 			</div>
 		</div>
 		
 		<div class="main_button_field">
-			<button onclick="redirectToPage('RoleBase')" class="main_button">角色卡库</button>
-			<button onclick="redirectToPage('ItemBase')" class="main_button">物品仓库</button>
-			<button onclick="redirectToPage()" class="main_button">跑团大厅</button>
-			<button onclick="redirectToPage()" class="main_button">个人设置</button>
-			<button onclick="redirectToPage('SimpleRoll')" class="main_button">离线版本</button>
-			<button onclick="redirectToPage('Readme')" class="main_button">Readme</button>
+			<button id="RoleBase" class="main_button">角色卡库</button>
+			<button id="ItemBase" class="main_button">物品仓库</button>
+			<button id="GameBase" class="main_button">跑团大厅</button>
+			<button id="Settings" class="main_button">个人设置</button>
+			<button id="SimpleRoll" class="main_button">离线版本</button>
+			<button id="Readme" class="main_button">Readme</button>
 		</div>
-		<script src = "js/index.js"  type = "text/javascript"></script>
+		<script src="js/basic.mjs" type="module"></script>
+		<script src="js/index.mjs" type="module"></script>
 	</body>
 </html>

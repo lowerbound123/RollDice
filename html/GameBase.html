@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>playground</title>
+</head>
+<body class="body">
+<link rel="stylesheet" type="text/css" href="../css/GameBase.css">
+<div id = "Header" class="header">
+  <a href="../index.html" class="RollDiceHead">
+    RollDice
+  </a>
+</div>
+<div id="subHeader" class="subHeader">
+  <p class="subHeaderWord">
+    游戏大厅
+  </p>
+</div>
+<div id="mixedField" class="mixedField">
+  <div class="discussionFont">
+    <p class="discussionWord">
+      讨论区
+    </p>
+  </div>
+  <div id="discussionBox" class="discussionBox">
+
+  </div>
+  <div class="connectFont">
+    <p class="connectWord">
+      直接连接
+    </p>
+  </div>
+  <div class="connectBox">
+    <label for="addressInput" class="addressLabel">IP或网址：</label>
+    <input id="addressInput" class="addressInput" placeholder="dyzyx.asuscomm.com">
+    <br>
+    <label for="portInput" class="portLabel">端&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp口：</label>
+    <input id="portInput" class="portInput" placeholder="8002">
+    <br>
+    <label for="accessTokenInput" class="accessTokenLabel">Token：</label>
+    <input id="accessTokenInput" class="accessTokenInput" placeholder="accessToken">
+    <br>
+    <button class="connectButton" onclick="">连接</button>
+  </div>
+</div>
+<div class="GameMenuField">
+  <button class="createNewGame">新建</button>
+
+  <button class="refreshButton">刷新</button>
+  <select name="展示个数" id="showNum" class="showNUM">
+    <option value="5" class="showNUMItem">5</option>
+    <option value="10" class="showNUMItem">10</option>
+    <option value="15" class="showNUMItem">15</option>
+    <option value="20" class="showNUMItem">20</option>
+    <option value="25" class="showNUMItem">20</option>
+    <option value="30" class="showNUMItem">20</option>
+  </select>
+  <select name="排序方法" id="sortMeue" class="sortMenu">
+    <option value="timeFromNewToOld" class="sortMenuItem">时间从新到旧</option>
+    <option value="timeFromOldToNew" class="sortMenuItem">时间从旧到新</option>
+    <option value="nameFromSmallToBig" class="sortMenuItem">姓名从小到大</option>
+    <option value="nameFromBigToSmall" class="sortMenuItem">姓名从大到小</option>
+  </select>
+  <div class="filterField">
+    <input id="filter" placeholder="标签" class="filter">
+    <button class="filterButton">筛选</button>
+  </div>
+
+</div>
+<div class="roleField">
+  <div class="roleBox">1</div>
+  <div class="roleBox">2</div>
+  <div class="roleBox">3</div>
+  <div class="roleBox">4</div>
+  <div class="roleBox">5</div>
+  <div class="roleBox">6</div>
+  <div class="roleBox">7</div>
+  <div class="roleBox">8</div>
+  <div class="roleBox">9</div>
+  <div class="roleBox">10</div>
+  <div class="roleBox">11</div>
+  <div class="roleBox">12</div>
+  <div class="roleBox">13</div>
+  <div class="roleBox">14</div>
+  <div class="roleBox">15</div>
+</div>
+<div class="PageSelectField">
+  <button class="pageLast">上一页</button>
+  <select name="页码选择" id="pageSelect" class="pageSelect">
+    <option value="1" class="pageSelectItem">1</option>
+    <option value="2" class="pageSelectItem">2</option>
+    <option value="3" class="pageSelectItem">3</option>
+    <option value="4" class="pageSelectItem">4</option>
+    <option value="5" class="pageSelectItem">5</option>
+  </select>
+  <button class="pageNext">下一页</button>
+</div>
+<script>
+
+</script>
+</body>
+</html>

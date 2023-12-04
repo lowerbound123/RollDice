@@ -16,14 +16,14 @@
     text-decoration: none;
     cursor: pointer;
 }
-.registerField {
+.infoField {
     display: flex;
     flex-direction: column;
     height: 1000px;
     justify-content: center;
     align-items: center;
 }
-.registerBox {
+.infoBox {
     /*background-color: #0011ff; !* 设置背景颜色以便观察效果 *!*/
     display: flex;
     flex-direction: column;
@@ -32,26 +32,4 @@
     height: 500px;
     width: 400px;
     border: 2px black solid;
-}
-.registerWord {
-    margin-top: -40px;
-    margin-bottom: 70px;
-    font-size: 50px;
-}
-.inputContainer {
-    display: flex;
-    margin-bottom: 30px;
-}
-.inputWord {
-    display: inline-block;
-}
-.inputItem {
-    width: 200px;
-}
-.loginButton {
-    width: 100px;
-    margin-bottom: 10px;
-}
-.registerButton {
-    width: 100px;
 }

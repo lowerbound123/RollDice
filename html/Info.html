@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="../css/Info.css">
+<script src = "../js/basic.mjs" type = "module"></script>
+<div id = "Header" class="header">
+    <a href="../index.html" class="RollDiceHead">
+        <h1 class="headerWord">RollDice</h1>
+    </a>
+</div>
+<div class="infoField">
+    <div id="infoBox" class="infoBox">
+
+    </div>
+</div>
+<script type="module">
+    import {redirectToPage} from "../js/basic.mjs";
+    var info = localStorage.getItem("Info");
+    var next = localStorage.getItem("Info_next");
+    document.getElementById("infoBox").innerHTML = "<p>" + info + "</p>";
+    if (next === "back") {
+        setTimeout(function () {
+            window.history.back();
+        }, 3000);
+    } else {
+        setTimeout(function () {
+            redirectToPage(next);
+        }, 3000);
+    }
+</script>
+</body>
+</html>
