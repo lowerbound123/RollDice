@@ -42,9 +42,8 @@ export async function hashPassword(password) {
     try {
         const hashBuffer = await crypto.subtle.digest("SHA-256", data);
         const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-        return hashHex;
-    } catch {
+        return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+    } catch(error) {
         console.log("SHA-256 error: " + error);
         throw error;
     }
@@ -73,6 +72,5 @@ export function quest(data, opt) {
 export async function renewAccessToken(token) {
     var currentDate = new Date();
     currentDate.setDate(currentDate + 15);
-    var cookieString = "accessToken=" + token + "; expires=" + currentDate.toUTCString() + "; path=/";
-    document.cookie = cookieString;
+    document.cookie = "accessToken=" + token + "; expires=" + currentDate.toUTCString() + "; path=/";
 }
