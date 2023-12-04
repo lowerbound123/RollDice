@@ -3,34 +3,34 @@ export function redirectToPage(x) {
     // console.log(currentPath);
     switch (x) {
         case "RoleBase":
-            window.location.href = "/RollDice/html/RoleBase.html";
+            window.location.href = "/html/RoleBase.html";
             break;
         case "ItemBase":
-            window.location.href = "/RollDice/html/ItemBase.html";
+            window.location.href = "/html/ItemBase.html";
             break;
         case "GameBase":
-            window.location.href = "/RollDice/html/GameBase.html";
+            window.location.href = "/html/GameBase.html";
             break;
         case "Settings":
             break;
 
         case "SimpleRoll":
-            window.location.href = "/RollDice/html/SimpleRoll.html";
+            window.location.href = "/html/SimpleRoll.html";
             break;
         case "Readme":
             break;
 
         case "LoginPage":
-            window.location.href = "/RollDice/html/LoginPage.html";
+            window.location.href = "/html/LoginPage.html";
             break;
         case "RegisterPage":
-            window.location.href = "/RollDice/html/RegisterPage.html";
+            window.location.href = "/html/RegisterPage.html";
             break;
         case "Info":
-            window.location.href = "/RollDice/html/Info.html";
+            window.location.href = "/html/Info.html";
             break;
         case "Index":
-            window.location.href = "/RollDice/index.html";
+            window.location.href = "/index.html";
             break;
     }
 }
