@@ -77,7 +77,7 @@ export async function renewCookie(name, val) {
 }
 
 export function getCookie(name) {
-    var cookieValue = null;
+    var cookieValue = "";
     var decodedCookie = decodeURIComponent(document.cookie);
     var cookieArray = decodedCookie.split(';');
 
