@@ -1,4 +1,4 @@
-import {quest, redirectToPage, hashPassword, renewAccessToken} from './basic.mjs';
+import {quest, redirectToPage, hashPassword, renewCookie} from './basic.mjs';
 
 async function login() {
     const username = document.getElementById('username').value;
@@ -14,7 +14,8 @@ async function login() {
             console.log(result);
             switch (result["status"]) {
                 case 0:
-                    renewAccessToken(result["accessToken"])
+                    renewCookie("accessToken", result["accessToken"]);
+                    renewCookie("id", result["id"]);
                     localStorage.setItem("Info", "登录成功，3秒后前往主页面");
                     localStorage.setItem("Info_next", "Index");
                     redirectToPage("Info");
