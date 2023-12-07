@@ -1,0 +1,42 @@
+.random3Field {
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+    justify-content: center;
+    align-items: center;
+}
+.random3Box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 400px;
+    border: 2px black solid;
+}
+.titleWord {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    font-size: 40px;
+}
+.selectionBox {
+    width: 300px;
+    height: 100px;
+    margin: 10px;
+    border: black solid 2px;
+}
+.basicAttribute {
+    width: 70px;
+    margin-left: 20px;
+    margin-right: 0;
+    margin-top: 5px;
+    margin-bottom: 0;
+    text-align: left;
+    display: inline-block;
+}
+.selected {
+    border: black solid 4px;
+}
+.buttons {
+    margin-top: 8px;
+}

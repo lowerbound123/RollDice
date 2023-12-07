@@ -1,4 +1,4 @@
-export function redirectToPage(x) {
+function redirectToPage(x) {
     // var currentPath = window.location.pathname;
     // console.log(currentPath);
     const prefix = "/RollDice";
@@ -33,10 +33,12 @@ export function redirectToPage(x) {
         case "Index":
             window.location.href = prefix + "/index.html";
             break;
+        case "coc7th_random3":
+            window.location.href = prefix + "/html/COC7th/RoleCreate_Random3.html";
     }
 }
 
-export async function hashPassword(password) {
+async function hashPassword(password) {
     const encoder = new TextEncoder();
     const data = encoder.encode(password);
 
@@ -50,11 +52,12 @@ export async function hashPassword(password) {
     }
 }
 
-export function quest(data, opt) {
+function quest(data, opt) {
     return new Promise(function (resolve, reject) {
         var xhr = new XMLHttpRequest();
         xhr.open('post', 'https://dyzyx.asuscomm.com:8000/' + opt, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
+        // xhr.withCredentials = true;
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
@@ -70,13 +73,13 @@ export function quest(data, opt) {
     });
 }
 
-export async function renewCookie(name, val) {
+async function renewCookie(name, val) {
     var currentDate = new Date();
     currentDate.setTime(currentDate.getTime() + (21600 * 1000 * 60));
     document.cookie = name + "=" + val + "; expires=" + currentDate.toUTCString() + "; path=/";
 }
 
-export function getCookie(name) {
+function getCookie(name) {
     var cookieValue = "";
     var decodedCookie = decodeURIComponent(document.cookie);
     var cookieArray = decodedCookie.split(';');
@@ -95,7 +98,7 @@ export function getCookie(name) {
     return cookieValue;
 }
 
-export function clearAllCookie() {
+function clearAllCookie() {
     var date=new Date();
     date.setTime(date.getTime()-10000);
     var keys=document.cookie.match(/[^ =;]+(?=\=)/g);
@@ -105,7 +108,7 @@ export function clearAllCookie() {
     }
 }
 
-export async function checkAccessToken() {
+async function checkAccessToken() {
     const token = getCookie("accessToken");
     const id = getCookie("id");
     const data = {
@@ -130,3 +133,67 @@ export async function checkAccessToken() {
         })
     return ans;
 }
+
+function rand(n) {
+    // console.log("begin rand");
+    // console.log(n);
+    var ans = Math.floor(998244353 * Math.random());
+    ans = parseInt(ans);
+    // console.log(ans % n);
+    // console.log("end rand");
+    return (ans % n) + 1;
+}
+// 获取一个[1, n]的随机数
+
+function ndm(n, m) {
+    // console.log("begin ndm");
+    var ans = 0;
+    for (var i = 0; i < n; i++) ans += rand(m);
+    // console.log(ans);
+    // console.log("end ndm");
+    return ans;
+
+}
+
+function calculateDice(s) {
+    var n = 0;
+    var number = [];
+    var option = [];
+    number[0] = 0;
+    option[0] = 0;
+    for (var i = 0; i < s.length; i++) {
+        if (s[i] <= '9' && s[i] >= '0') number[n] = number[n] * 10 + parseInt(s[i] + "");
+        if (s[i] === 'd' || s[i] === 'D') option[n] = 2, n++, number[n] = 0;
+        if (s[i] === '+') option[n] = 1, n++, number[n] = 0;
+        if (s[i] === '-') option[n] = 3, n++, number[n] = 0;
+    }
+    option[n] = 0;
+
+    for (var i = 0; i <= n; i++) {
+        if (option[i] === 2) {
+            number[i + 1] = ndm(number[i], number[i + 1]);
+            number[i] = 0;
+        }
+    }
+
+    var ans = number[0];
+    var opt = 1;
+    for (var i = 1; i <= n; i++) {
+        if (option[i - 1] === 1) opt = 1;
+        if (option[i - 1] === 3) opt = 3;
+        if (opt === 1) ans += number[i];
+        if (opt === 3) ans -= number[i];
+    }
+    return ans;
+}
+
+export {
+    redirectToPage,
+    hashPassword,
+    quest,
+    clearAllCookie,
+    renewCookie,
+    checkAccessToken,
+    getCookie,
+    calculateDice
+};
