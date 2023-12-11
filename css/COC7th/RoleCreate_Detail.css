@@ -1,0 +1,59 @@
+.detailInformationField {
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+    justify-content: center;
+    align-items: center;
+}
+.detailBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 500px;
+    width: 400px;
+    border: 2px black solid;
+    overflow-y: auto;
+    padding: 20px;
+}
+.titleWord {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+#description {
+    width: 300px;
+    min-height: 70px;
+}
+#belief {
+    width: 300px;
+    min-height: 16px;
+}
+#significantPerson {
+    width: 300px;
+    min-height: 16px;
+}
+#significantPlace {
+    width: 300px;
+    min-height: 16px;
+}
+#traits {
+    width: 300px;
+    min-height: 16px;
+}
+#wounds {
+    width: 300px;
+    min-height: 16px;
+}
+#madness {
+    width: 300px;
+    min-height: 16px;
+}
+#background {
+    width: 300px;
+    min-height: 100px;
+    margin-bottom: 20px;
+}
+#valuables {
+    width: 300px;
+    min-height: 16px;
+}

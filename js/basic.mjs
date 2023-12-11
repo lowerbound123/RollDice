@@ -33,8 +33,24 @@ function redirectToPage(x) {
         case "Index":
             window.location.href = prefix + "/index.html";
             break;
-        case "coc7th_random3":
+        case "COC7th/RoleCreate_Basic":
+            window.location.href = prefix + "/html/COC7th/RoleCreate_Basic.html";
+            break
+        case "COC7th/random3":
             window.location.href = prefix + "/html/COC7th/RoleCreate_Random3.html";
+            break;
+        case "COC7th/RoleCreate_Occupations":
+            window.location.href = prefix + "/html/COC7th/RoleCreate_Occupations.html";
+            break;
+        case "COC7th/RoleCreate_VocationalSkills":
+            window.location.href = prefix + "/html/COC7th/RoleCreate_VocationalSkills.html";
+            break;
+        case "COC7th/RoleCreate_Skills":
+            window.location.href = prefix + "/html/COC7th/RoleCreate_Skills.html";
+            break;
+        case "COC7th/RoleCreate_Detail":
+            window .location.href = prefix + "/html/COC7th/RoleCreate_Detail.html";
+            break;
     }
 }
 
@@ -195,5 +211,5 @@ export {
     renewCookie,
     checkAccessToken,
     getCookie,
-    calculateDice
+    calculateDice,
 };

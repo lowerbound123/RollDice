@@ -49,12 +49,13 @@ function convert_to_html(data) {
 }
 
 function random3() {
+    localStorage.removeItem('basicAttributionSelection');
     var att1 = get_attributes();
     var att2 = get_attributes();
     var att3 = get_attributes();
-    localStorage.setItem("basicAttributions_1", att1);
-    localStorage.setItem("basicAttributions_2", att2);
-    localStorage.setItem("basicAttributions_3", att3);
+    localStorage.setItem("basicAttributions_1", JSON.stringify(att1));
+    localStorage.setItem("basicAttributions_2", JSON.stringify(att2));
+    localStorage.setItem("basicAttributions_3", JSON.stringify(att3));
     const selectionBox_1 = document.getElementById("basicAttributions_1");
     const selectionBox_2 = document.getElementById("basicAttributions_2");
     const selectionBox_3 = document.getElementById("basicAttributions_3");
@@ -72,11 +73,17 @@ selections.forEach((div) => {
             otherDiv.classList.remove('selected');
         })
         div.classList.add('selected');
-        localStorage.setItem('basicAttributionSelection', div);
+        localStorage.setItem('basicAttributionSelection', div.id);
     })
 })
 
 document.getElementById("lastButton").onclick = function () {history.back();}
 document.getElementById("nextButton").onclick = function () {
-    redirectToPage("COC7th_OccupationSelect");
+    if (localStorage.getItem('basicAttributionSelection') == null) {
+        localStorage.setItem('Info', "请选择一种属性方案，3秒后返回");
+        localStorage.setItem('Info_next', "back");
+        redirectToPage('Info')
+    } else {
+        redirectToPage("COC7th/RoleCreate_Occupations");
+    }
 }

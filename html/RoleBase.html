@@ -17,22 +17,20 @@
     </p>
 </div>
 <div class="RoleMenuField">
-    <button class="createNewRole">新建</button>
+    <button id="createNewRole" class="createNewRole">新建</button>
 
     <button class="refreshButton">刷新</button>
     <select name="展示个数" id="showNum" class="showNUM">
         <option value="5" class="showNUMItem">5</option>
         <option value="10" class="showNUMItem">10</option>
         <option value="15" class="showNUMItem">15</option>
-        <option value="20" class="showNUMItem">20</option>
-        <option value="25" class="showNUMItem">20</option>
-        <option value="30" class="showNUMItem">20</option>
+        <option value="20" class="showNUMItem" selected>20</option>
     </select>
     <select name="排序方法" id="sortMeue" class="sortMenu">
-        <option value="timeFromNewToOld" class="sortMenuItem">时间从新到旧</option>
-        <option value="timeFromOldToNew" class="sortMenuItem">时间从旧到新</option>
-        <option value="nameFromSmallToBig" class="sortMenuItem">姓名从小到大</option>
-        <option value="nameFromBigToSmall" class="sortMenuItem">姓名从大到小</option>
+        <option value="create_time DESC" class="sortMenuItem" selected>时间从新到旧</option>
+        <option value="create_time" class="sortMenuItem">时间从旧到新</option>
+        <option value="role_name" class="sortMenuItem">姓名从小到大</option>
+        <option value="role_name DESC" class="sortMenuItem">姓名从大到小</option>
     </select>
     <div class="filterField">
         <input id="filter" placeholder="标签" class="filter">
@@ -73,8 +71,6 @@
     </select>
     <button class="pageNext">下一页</button>
 </div>
-<script>
-
-</script>
+<script src="/js/RoleBase.mjs" type="module"></script>
 </body>
 </html>
