@@ -46,7 +46,11 @@ nextButton.onclick = function () {
     }
     quest(data, 'roleCreate')
         .then((response) => {
-            redirectToPage('RoleBase');
+            if (response['status'] === 0) {
+                localStorage.setItem("Info", "创建成功，三秒后回到人物库");
+                localStorage.setItem("Info_next", "RoleBase");
+                redirectToPage('Info');
+            }
         })
         .catch((error) => {
             console.log(error);

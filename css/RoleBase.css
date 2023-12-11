@@ -67,6 +67,7 @@
     width: 230px;
     border: black 2px solid;
     margin: 20px;
+    overflow-y: auto;
 }
 .PageSelectField {
     display: flex;
@@ -82,4 +83,13 @@
 }
 .pageNext {
     font-size: 15px;
+}
+.innerText {
+    margin: 0;
+}
+.skillText {
+    font-size: 13px;
+    border-top: black 1px solid;
+    border-bottom: black 1px solid;
+    width: 210px;
 }

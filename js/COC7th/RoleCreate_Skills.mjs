@@ -1,43 +1,4 @@
-import {getCookie, quest, redirectToPage} from "../basic.mjs";
-
-async function getSkillList() {
-    var skillList = JSON.parse(localStorage.getItem("coc7th_skillList"));
-    if (skillList == null) {
-        var data = {
-            accessToken: getCookie("accessToken"),
-            id: getCookie('id'),
-            rule: 'coc7th'
-        }
-        await quest(data, 'skillList')
-            .then((result) => {
-                localStorage.setItem("coc7th_skillList", JSON.stringify(result['skillList']));
-                skillList = result['skillList'];
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
-    return skillList;
-}
-
-async function getOccupations() {
-    var occupations = JSON.parse(localStorage.getItem('coc7th_occupationList'));
-    if (occupations == null) {
-        var data = {};
-        data["accessToken"] = getCookie("accessToken");
-        data["id"] = getCookie("id");
-        data["rule"] = "COC7th"
-        await quest(data, 'occupationList')
-            .then((result) => {
-                localStorage.setItem('coc7th_occupationList', JSON.stringify(result['occupationList']));
-                occupations = result['occupationList'];
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
-    return occupations;
-}
+import {getCookie, quest, redirectToPage, getOccupations, getSkillList} from "../basic.mjs";
 
 // 隐藏所有的description
 function hideAllDescriptions() {
@@ -92,7 +53,7 @@ async function init_page() {
         vocationalLimit = attribute['EDU'] * 2 + attribute['DEX'] * 2;
     }
     if (occupations[occupationId]['cal'] === 'EDU+APP') {
-        vocationalLimit = attribute['EDU'] * 4 + attribute['APP'] * 2;
+        vocationalLimit = attribute['EDU'] * 2 + attribute['APP'] * 2;
     }
     normalLimit = attribute['INT'] * 2;
     restVocationalPoint.textContent = "职业技能点剩余：" + vocationalLimit;

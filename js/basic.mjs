@@ -203,6 +203,45 @@ function calculateDice(s) {
     return ans;
 }
 
+async function getSkillList() {
+    var skillList = JSON.parse(localStorage.getItem("coc7th_skillList"));
+    if (skillList == null) {
+        var data = {
+            accessToken: getCookie("accessToken"),
+            id: getCookie('id'),
+            rule: 'coc7th'
+        }
+        await quest(data, 'skillList')
+            .then((result) => {
+                localStorage.setItem("coc7th_skillList", JSON.stringify(result['skillList']));
+                skillList = result['skillList'];
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+    return skillList;
+}
+
+async function getOccupations() {
+    var occupations = JSON.parse(localStorage.getItem('coc7th_occupationList'));
+    if (occupations == null) {
+        var data = {};
+        data["accessToken"] = getCookie("accessToken");
+        data["id"] = getCookie("id");
+        data["rule"] = "COC7th"
+        await quest(data, 'occupationList')
+            .then((result) => {
+                localStorage.setItem('coc7th_occupationList', JSON.stringify(result['occupationList']));
+                occupations = result['occupationList'];
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+    return occupations;
+}
+
 export {
     redirectToPage,
     hashPassword,
@@ -212,4 +251,6 @@ export {
     checkAccessToken,
     getCookie,
     calculateDice,
+    getSkillList,
+    getOccupations,
 };
