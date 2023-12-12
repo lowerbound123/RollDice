@@ -19,6 +19,7 @@ async function refresh() {
     }
     quest(data, 'roleList')
         .then((result) => {
+            console.log(result);
             if (result["cnt"] !== cnt) {
                 cnt = result["cnt"];
                 pageSelect.innerHTML = '';
@@ -35,7 +36,7 @@ async function refresh() {
             for (let i = 1; i <= 20; i++) {
                 let roleBox = document.getElementById('roleBox_' + i);
                 roleBox.innerHTML = '';
-                let role = result['roleList'][i - 1]
+                let role = result['roleList'][i - 1];
                 if (role != null) {
                     let item = document.createElement('p');
                     item.textContent = role['rolename'] + '(' + role['nickname'] + ')';

@@ -207,8 +207,8 @@ function calculateDice(s) {
 }
 
 async function getSkillList() {
-    var skillList = JSON.parse(localStorage.getItem("coc7th_skillList"));
-    if (skillList == null) {
+    var skillList = localStorage.getItem("coc7th_skillList");
+    if (skillList == null || skillList === '' || typeof myVariable === 'undefined') {
         var data = {
             accessToken: getCookie("accessToken"),
             id: getCookie('id'),
@@ -222,13 +222,13 @@ async function getSkillList() {
             .catch((error) => {
                 console.log(error);
             })
-    }
+    } else skillList = JSON.parse(skillList);
     return skillList;
 }
 
 async function getOccupations() {
-    var occupations = JSON.parse(localStorage.getItem('coc7th_occupationList'));
-    if (occupations == null) {
+    var occupations = localStorage.getItem('coc7th_occupationList');
+    if (occupations == null || occupations === '' || typeof myVariable === 'undefined') {
         var data = {};
         data["accessToken"] = getCookie("accessToken");
         data["id"] = getCookie("id");
@@ -241,7 +241,7 @@ async function getOccupations() {
             .catch((error) => {
                 console.log(error);
             })
-    }
+    } else occupations = JSON.parse(occupations);
     return occupations;
 }
 
