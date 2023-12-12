@@ -14,11 +14,6 @@
     width: 400px;
     border: 2px black solid;
 }
-.titleWord {
-    margin-top: -10px;
-    margin-bottom: 10px;
-    font-size: 40px;
-}
 .selectionBox {
     width: 300px;
     height: 100px;
@@ -33,6 +28,8 @@
     margin-bottom: 0;
     text-align: left;
     display: inline-block;
+    font-family: "Times New Roman", serif;
+    /*font-size: 14px;*/
 }
 .selected {
     border: black solid 4px;
