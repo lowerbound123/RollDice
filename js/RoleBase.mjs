@@ -4,23 +4,23 @@ document.getElementById('createNewRole').onclick = function () {
     redirectToPage('COC7th/RoleCreate_Basic');
 }
 
-let occupations, skills, cnt = 0, roleList;
+let occupations, skills, cnt = 0, roleList, limit = 20;
 const pageSelect = document.getElementById('pageSelect');
 async function refresh() {
-    let limit = document.getElementById('showNum').value;
     let ord = document.getElementById('sortMeue').value;
     let offset = (pageSelect.value - 1) * limit;
     const data = {
         id: getCookie("id"),
         accessToken: getCookie("accessToken"),
         ord: ord,
-        limit: parseInt(limit),
+        limit: parseInt(document.getElementById('showNum').value),
         offset: parseInt(offset)
     }
     quest(data, 'roleList')
         .then((result) => {
             console.log(result);
-            if (result["cnt"] !== cnt) {
+            if (result["cnt"] !== cnt || data['limit'] !== limit) {
+                limit = parseInt(document.getElementById('showNum').value);
                 cnt = result["cnt"];
                 pageSelect.innerHTML = '';
                 for (let i = 0; i < Math.ceil(cnt / limit); i++) {
