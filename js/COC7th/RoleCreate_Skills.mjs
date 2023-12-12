@@ -40,7 +40,7 @@ const attribute = JSON.parse(localStorage.getItem(localStorage.getItem('basicAtt
 async function init_page() {
     skills = await getSkillList();
     occupations = await getOccupations();
-    const occupationId = parseInt(localStorage.getItem('occupationId')[6]);
+    const occupationId = parseInt(localStorage.getItem('occupationId')[6]) - 1;
     var cnt = 0;
     const vocationalSkillTable = document.getElementById('vocationalSkills');
     const vocationalRow = vocationalSkillTable.insertRow();
@@ -144,16 +144,15 @@ async function init_page() {
     const inputs = document.querySelectorAll('input[name="skillInput"]');
     inputs.forEach(element => {
         element.addEventListener('input', function (event) {
-            console.log(skillAdd);
-            console.log("vocational: ", vocationalPoint, " normal: ", normalPoint);
-            console.log(event.target);
-            console.log(element.id, element.value);
             let id = element.id;
             if (skillAdd[id] == null) {
                 skillAdd[id] = skills[parseInt(id) - 1]['initial'];
             }
             let initial = skills[parseInt(id) - 1]['initial'];
-            if (skills[parseInt(id) - 1]['name'] === '闪避') initial = Math.floor(attribute['DEX'] / 2);
+            if (skills[parseInt(id) - 1]['name'] === '闪避') {
+                initial = Math.floor(attribute['DEX'] / 2);
+                skillAdd[id] = initial;
+            }
             let oldAddPoint = skillAdd[id] - initial;
             if (oldAddPoint < 0) oldAddPoint = 0;
             if (element.value === '') skillAdd[id] = 0; else skillAdd[id] = parseInt(element.value);

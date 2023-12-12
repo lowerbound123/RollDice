@@ -22,7 +22,7 @@ async function getSkillList() {
 async function init_page() {
     await getSkillList();
     const occupationId = localStorage.getItem('occupationId')[6];
-    const occupation = await JSON.parse(localStorage.getItem("coc7th_occupationList"))[parseInt(occupationId)];
+    const occupation = await JSON.parse(localStorage.getItem("coc7th_occupationList"))[parseInt(occupationId) - 1];
     const prefix = "skill_id_";
     const skills = await JSON.parse(localStorage.getItem("coc7th_skillList"));
     var skillId;

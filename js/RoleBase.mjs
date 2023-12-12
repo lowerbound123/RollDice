@@ -4,7 +4,7 @@ document.getElementById('createNewRole').onclick = function () {
     redirectToPage('COC7th/RoleCreate_Basic');
 }
 
-let occupations, skills, cnt, roleList;
+let occupations, skills, cnt = 0, roleList;
 const pageSelect = document.getElementById('pageSelect');
 async function refresh() {
     let limit = document.getElementById('showNum').value;
@@ -19,12 +19,17 @@ async function refresh() {
     }
     quest(data, 'roleList')
         .then((result) => {
-            cnt = result["cnt"];
-            for (let i = 1; i < Math.ceil(cnt / limit); i++) {
-                let pageItem = document.createElement('option');
-                pageItem.setAttribute('value', (i + 1) + '');
-                pageItem.setAttribute('class', 'pageSelectItem')
-                pageSelect.appendChild(pageItem);
+            if (result["cnt"] !== cnt) {
+                cnt = result["cnt"];
+                pageSelect.innerHTML = '';
+                for (let i = 0; i < Math.ceil(cnt / limit); i++) {
+                    let pageItem = document.createElement('option');
+                    pageItem.setAttribute('value', (i + 1) + '');
+                    pageItem.setAttribute('class', 'pageSelectItem')
+                    pageItem.textContent = (i + 1) + '';
+                    if (i * limit === offset) pageItem.selected = true; else pageItem.selected = false;
+                    pageSelect.appendChild(pageItem);
+                }
             }
             roleList = result['roleList'];
             for (let i = 1; i <= 20; i++) {
@@ -51,6 +56,9 @@ async function refresh() {
                     item.setAttribute('class', 'innerText');
                     item.textContent = role['background'];
                     roleBox.appendChild(item);
+                    roleBox.style.display = 'block';
+                } else {
+                    roleBox.style.display = 'none';
                 }
             }
 
@@ -64,3 +72,29 @@ async function init_page() {
 }
 
 init_page();
+
+pageSelect.addEventListener('change', () => {
+    refresh();
+})
+
+const sortMeue = document.getElementById('sortMeue');
+sortMeue.addEventListener('change', () => {
+    refresh();
+})
+
+const refreshButton = document.getElementById('refreshButton');
+refreshButton.onclick = function () {
+    refresh();
+}
+
+function roleDetail(x) {
+    sessionStorage.setItem('roleId', roleList[x]['roleId']);
+    redirectToPage('RoleDetail');
+}
+
+const roleBoxes = document.querySelectorAll('.roleBox');
+roleBoxes.forEach(function(box) {
+    box.addEventListener('click', function() {
+        if (box.style.display !== 'none') roleDetail(box.id.substring(8));
+    });
+});

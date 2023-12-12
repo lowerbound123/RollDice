@@ -51,6 +51,9 @@ function redirectToPage(x) {
         case "COC7th/RoleCreate_Detail":
             window .location.href = prefix + "/html/COC7th/RoleCreate_Detail.html";
             break;
+        case "RoleDetail":
+            window.location.href = prefix + "/html/RoleDetail.html";
+            break;
     }
 }
 
