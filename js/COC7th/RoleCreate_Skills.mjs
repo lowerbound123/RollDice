@@ -140,7 +140,7 @@ async function init_page() {
             element => element.textContent.trim() === '闪避'
         ).getAttribute('for'));
     dodgeElement.placeholder = Math.floor(attribute['DEX'] / 2);
-
+    skillAdd[dodgeElement.id] = Math.floor(attribute['DEX'] / 2);
     const inputs = document.querySelectorAll('input[name="skillInput"]');
     inputs.forEach(element => {
         element.addEventListener('input', function (event) {
@@ -151,7 +151,6 @@ async function init_page() {
             let initial = skills[parseInt(id) - 1]['initial'];
             if (skills[parseInt(id) - 1]['name'] === '闪避') {
                 initial = Math.floor(attribute['DEX'] / 2);
-                skillAdd[id] = initial;
             }
             let oldAddPoint = skillAdd[id] - initial;
             if (oldAddPoint < 0) oldAddPoint = 0;

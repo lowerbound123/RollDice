@@ -95,6 +95,6 @@ function roleDetail(x) {
 const roleBoxes = document.querySelectorAll('.roleBox');
 roleBoxes.forEach(function(box) {
     box.addEventListener('click', function() {
-        if (box.style.display !== 'none') roleDetail(box.id.substring(8));
+        if (box.style.display !== 'none') roleDetail(parseInt(box.id.substring(8)) - 1);
     });
 });
